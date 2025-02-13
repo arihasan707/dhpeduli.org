@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BeritaPenyaluran;
 use App\Models\Donasi;
 use App\Models\Program;
 use App\Models\Kategori;
+use App\Models\ListBerita;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
 
 class HomeController extends Controller
 {
@@ -26,6 +29,21 @@ class HomeController extends Controller
         $donatur = Donasi::where('program_id', $program->id)->where('status', '=', 'settlement')->get();
         $countDonasi = count($donatur);
         $terkumpul = $program->terkumpul / $program->kebutuhan * 100;
+        $data = BeritaPenyaluran::where('program_id', $program->id)->first();
+
+        $berita = [];
+
+        if ($data === null) {
+            $berita = false;
+        } else {
+            $berita = ListBerita::where('berita_penyaluran_id', $data->id)->first();
+            if ($berita == false) {
+                $berita = false;
+            } else {
+                $berita = ListBerita::where('berita_penyaluran_id', $data->id)->orderBy('created_at', 'desc')->first();
+            }
+        }
+
 
         if ($request->query()) {
             switch ($request->query('filter')) {
@@ -49,7 +67,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('detail', compact('program', 'donasi', 'judulHeader', 'countDonasi', 'terkumpul'));
+        return view('detail', compact('program', 'donasi', 'judulHeader', 'countDonasi', 'terkumpul', 'berita'));
     }
 
     // public function like(Request $request)

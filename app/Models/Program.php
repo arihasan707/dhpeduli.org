@@ -33,6 +33,11 @@ class Program extends Model
         return $this->belongsTo(Kategori::class);
     }
 
+    public function BeritaPenyaluran(): HasMany
+    {
+        return $this->hasMany(BeritaPenyaluran::class);
+    }
+
     public function Donasis(): HasMany
     {
         return $this->hasMany(Donasi::class);

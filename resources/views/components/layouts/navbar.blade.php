@@ -17,15 +17,9 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-menu-group-title">Main</li>
+            <li class="sidebar-menu-group-title">Campaign</li>
             <li>
-                <a href="{{route('donasi.index')}}">
-                    <iconify-icon icon="hugeicons:favourite" class="menu-icon"></iconify-icon>
-                    <span>Donasi</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('program.index')}}" class="{{request()->is('admin/program') ? 'active-page' : ''}}">
+                <a href="{{route('program.index')}}" class="{{request()->is('admin/program/*') ? 'active-page' : ''}}">
                     <iconify-icon icon="hugeicons:charity" class="menu-icon"></iconify-icon>
                     <span>Program</span>
                 </a>
@@ -36,6 +30,21 @@
                     <span>Kategori</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('berita-penyaluran.index')}}"
+                    class="{{request()->is('admin/berita-penyaluran/*') ? 'active-page' : ''}}">
+                    <iconify-icon icon="hugeicons:hold-01" class="menu-icon"></iconify-icon>
+                    <span>Berita & Penyaluran</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-group-title">Main</li>
+            <li>
+                <a href="{{route('donasi.index')}}" class="{{request()->is('admin/donasi') ? 'active-page' : ''}}">
+                    <iconify-icon icon="hugeicons:favourite" class="menu-icon"></iconify-icon>
+                    <span>Donasi</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-group-title">Akun</li>
             <li>
                 <a href="{{route('user.index')}}" class="{{request()->is('admin/user') ? 'active-page' : ''}}">
                     <iconify-icon icon="hugeicons:user" class="menu-icon"></iconify-icon>

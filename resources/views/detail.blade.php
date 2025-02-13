@@ -2,25 +2,70 @@
 
     @push('styles')
     <style>
-    .content-clipper {
-        max-height: 300px;
-        overflow: hidden;
-        position: relative;
-    }
+        .content-clipper {
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    .content-clipper::after {
-        content: " ";
-        width: 100%;
-        height: 200px;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        background-image: linear-gradient(hsla(0, 0%, 100%, 0), #fff);
-    }
+        .content-clipper::after {
+            content: " ";
+            width: 100%;
+            height: 200px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(hsla(0, 0%, 100%, 0), #fff);
+        }
 
-    .fill-current {
-        color: red;
-    }
+        .content-clipper-lg {
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-clipper-lg::after {
+            content: " ";
+            width: 100%;
+            height: 200px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(hsla(0, 0%, 100%, 0), #fff);
+        }
+
+        .fill-current {
+            color: red;
+        }
+
+        .news-item:before {
+            content: " ";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background-color: #fff;
+            border-radius: 100%;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            border: 4px solid #fff !important;
+            background: #ff2d20 !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+        }
+
+        .news-item:not(:last-child):after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 9px;
+            bottom: 0;
+            width: 1px;
+            background-color: #e3e3e3;
+        }
+
+        .news-item {
+            padding-left: 30px;
+        }
     </style>
 
     @endpush
@@ -151,8 +196,7 @@
             <p class="text-gray-600 text-sm mt-2">{{ $program->desc_singkat }}</p>
             <div class="flex items-end mt-6">
                 <div class="flex-1">
-                    <div
-                        class="text-sm text-gray-600 inline-flex items-center gap-2">
+                    <div class="text-sm text-gray-600 inline-flex items-center gap-2">
                         Dana terkumpul</div>
                     <div class="text-red-600 font-semibold text-lg">@rupiah($program->terkumpul)</div>
                 </div>
@@ -163,7 +207,7 @@
                     </svg>
                 </button>
             </div>
-             <span x-show="open" x-transition>
+            <span x-show="open" x-transition>
                 <div class="bg-slate-50 -mx-4 -mb-4 p-4 mt-2 border-t border-b">
                     <div class="text-sm text-gray-600">Terkumpul</div>
                     <div class="text-gray-800 font-semibold text-lg">{{ number_format($terkumpul)}}%
@@ -237,12 +281,12 @@
         <h3 class="font-bold mb-3 text-sm">Tentang program</h3>
         <div class="text-gray-600 leading-relaxed text-sm">
             <div class="content content-clipper">
-              {!! $program->detail_program !!}
+                {!! $program->detail_program !!}
             </div>
             <div class="text-center pt-8">
                 <button type="button"
                     class="bg-red-100 hover:bg-red-200 text-red-600 font-semibold py-2 px-4 text-sm rounded-xl"
-                    id="cek">Selengkapnya</button>
+                    id="tentang">Selengkapnya</button>
             </div>
             <div class="border border-blue-300 bg-blue-100 p-3 mt-8 text-gray-600 text-xs"><strong
                     class="text-gray-600">Disclaimer :</strong> Informasi, opini dan foto yang ada di halaman galang
@@ -250,6 +294,58 @@
                     class="text-red-600 font-semibold" href="http://">lapor kepada kami disini.</a>.</div>
         </div>
     </div>
+
+    @if ($berita === false)
+    <div class="p-4 border-t-8 border-gray-100 relative" id="news">
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="font-bold text-sm flex-1">Berita Terbaru</h3>
+        </div>
+        <div id="news-list">
+            <div class="text-center"><img src="{{asset('img/paper-logo.png')}}" width="55" alt="belum ada berita"
+                    class="mx-auto mb-6 w-20">
+                <h3 class="font-semibold mb-2 leading-none">Belum ada berita</h3>
+                <p class="text-gray-600 text-sm my-0">Lembaga belum membuat berita terbaru</p>
+            </div>
+        </div>
+    </div>
+    @else
+    <div class="p-4 border-t-8 border-gray-100 relative" id="news">
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="font-bold text-sm flex-1">Berita Terbaru</h3><a
+                class="text-darkblue-500 hover:text-darkblue-700 font-medium text-sm flex items-center"
+                href="/sedekah-untuk-berbuka-puasa-senin-kamis/news?utm=list_program">Lihat Semua <svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg></a>
+        </div>
+        <div id="news-list">
+            <div class="content content-clipper-lg ">
+                <div class="news-item pb-5 relative">
+                    <div class="">
+                        <p class="text-sm text-gray-600 mb-1">27 Dec 2024</p>
+                        <p class="font-semibold mb-3 text-sm">{{ $berita->judul }}</p>
+                        <div class="content leading-relaxed text-gray-600 text-sm">
+                            {!! $berita->ket !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center"><a
+                        class="text-darkblue-500 font-medium text-sm flex items-center justify-center"
+                        href="/sedekah-untuk-berbuka-puasa-senin-kamis/news?utm=list_program">Lihat Semua Berita<svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="ml-1">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg></a></div>
+            </div>
+            <div class="text-center pt-8"><button id="berita" type="button"
+                    class="bg-red-100 hover:bg-red-200 text-red-600  font-semibold py-2 px-4 text-sm rounded-xl">Selengkapnya</button>
+            </div>
+        </div>
+    </div>
+    @endif
+
 
     <div class="p-4 border-t-8 border-gray-100 relative">
         <div class="flex items-center justify-between mb-8">
@@ -312,91 +408,97 @@
 
     @push('scripts')
 
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
 
     <script>
-    let kebutuhan = '{{$program->kebutuhan}}'
-    let terkumpul = '{{$program->terkumpul}}'
-    let tipe_waktu = '{{$program->tipe_waktu}}'
-    let waktu = '{{selisihWaktu($program->waktu)}}'
-    
+        let kebutuhan = '{{$program->kebutuhan}}'
+        let terkumpul = '{{$program->terkumpul}}'
+        let tipe_waktu = '{{$program->tipe_waktu}}'
+        let waktu = '{{selisihWaktu($program->waktu)}}'
 
-    if (tipe_waktu == 0) {
-        waktu = '{{$program->waktu}}'
-    }
 
-    waktu = waktu.replace('hari', '')
+        if (tipe_waktu == 0) {
+            waktu = '{{$program->waktu}}'
+        }
 
-    if (kebutuhan == terkumpul || waktu == 0) {
-        $('nav a').addClass('cursor-not-allowed')
-        $('nav a').text('Program telah berakhir')
-        $('nav a').removeAttr('href')
-    }
+        waktu = waktu.replace('hari', '')
 
-    if (waktu == '') {
-        $('nav a').removeClass('cursor-not-allowed opacity-30')
-        $('nav a').text('Donasi Sekarang')
-        $('nav a').attr('href', "{{route('donasi',$program->slug)}}")
-        if (kebutuhan == terkumpul) {
+        if (kebutuhan == terkumpul || waktu == 0) {
             $('nav a').addClass('cursor-not-allowed')
             $('nav a').text('Program telah berakhir')
             $('nav a').removeAttr('href')
         }
-    }
 
-    let scroll = $('.scroll');
+        if (waktu == '') {
+            $('nav a').removeClass('cursor-not-allowed opacity-30')
+            $('nav a').text('Donasi Sekarang')
+            $('nav a').attr('href', "{{route('donasi',$program->slug)}}")
+            if (kebutuhan == terkumpul) {
+                $('nav a').addClass('cursor-not-allowed')
+                $('nav a').text('Program telah berakhir')
+                $('nav a').removeAttr('href')
+            }
+        }
 
-    $(document).ready(function() {
-        $(window).on('scroll', function() {
-            if (pageYOffset > 280) {
-                scroll.show()
-            } else
-                scroll.hide()
-        })
+        let scroll = $('.scroll');
 
-        $('#cek').on('click', function() {
-            $(this).closest('div').remove();
-            $('.content').removeClass('content-clipper');
-        })
+        $(document).ready(function() {
+            $(window).on('scroll', function() {
+                if (pageYOffset > 280) {
+                    scroll.show()
+                } else
+                    scroll.hide()
+            })
 
-        $('nav button').on('click', function() {
-            $('.bagikan').show();
-            $('body').append(
-                ' <div class="fixed overlay inset-0 bg-gray-900 bg-opacity-50 z-[1000]"></div>')
-        })
+            $('#tentang').on('click', function() {
+                $(this).closest('div').remove();
+                $('.content').removeClass('content-clipper');
+            })
 
-        $('#x').on('click', function() {
-            $('.bagikan').hide();
-            $('.overlay').remove()
-        })
+            $('#berita').on('click', function() {
+                $(this).closest('div').remove();
+                $('.content').removeClass('content-clipper-lg');
+            })
 
-        $('.like').on('click', function() {
-            $(this).removeClass('hover:border-red-500');
-            $(this).removeClass('hover:text-red-500');
-            $(this).children().addClass('fill-current');
-            $(this).addClass('border-red-500');
-            $(this).addClass('text-red-500');
-            let id = $(this).data('id');
-            $.ajax({
-                type: "POST",
-                url: "{{route('like')}}",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: id,
-                },
-                success: function(response) {
+            $('nav button').on('click', function() {
+                $('.bagikan').show();
+                $('body').append(
+                    ' <div class="fixed overlay inset-0 bg-gray-900 bg-opacity-50 z-[1000]"></div>')
+            })
 
-                }
+            $('#x').on('click', function() {
+                $('.bagikan').hide();
+                $('.overlay').remove()
+            })
+
+            $('.like').on('click', function() {
+                $(this).removeClass('hover:border-red-500');
+                $(this).removeClass('hover:text-red-500');
+                $(this).children().addClass('fill-current');
+                $(this).addClass('border-red-500');
+                $(this).addClass('text-red-500');
+                let id = $(this).data('id');
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('like')}}",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: id,
+                    },
+                    success: function(response) {
+
+                    }
+                });
+
+                $(this).off('click')
             });
 
-            $(this).off('click')
+            $('.backTo').on('click', function() {
+                window.location.href = "{{route('program')}}"
+            })
+
         });
-        
-        $('.backTo').on('click',function(){
-            window.location.href = "{{route('program')}}"
-        })
-        
-    });
     </script>
 
     @endpush

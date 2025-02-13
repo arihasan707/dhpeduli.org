@@ -6,13 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class form-user extends Component
+class BreadcrumbBeritaPenyaluran extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
+    public function __construct(
+        public string $title,
+        public string $program
+    ) {
         //
     }
 
@@ -21,6 +23,6 @@ class form-user extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form-user');
+        return view('components.breadcrumb-berita-penyaluran');
     }
 }
