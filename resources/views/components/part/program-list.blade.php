@@ -5,12 +5,12 @@
 
 @foreach ($program as $row)
 <div class="mb-2 grid">
-    <a href="{{route('detail',$row->slug)}}" class="flex flex-row pl-4 pt-3 pr-4">
+    <a href="{{route('detail',$row->slug)}}" class="flex flex-row px-4">
         <div class="basis-2/3">
             <img src="{{asset('upload/'.$row->img)}}" alt="flayer"
-                class="rounded-s-md border-slate-100 shadow-md border-1">
+                class="rounded-s-md border-slate-100 shadow-lg border-1">
         </div>
-        <div class="basis-2/3 rounded-e-md border-slate-100 pl-2 pr-2 shadow-md border-1">
+        <div class="basis-2/3 rounded-e-md border-slate-100 pl-2 pr-2 shadow-lg border-1">
             <span class="text-[9px]">Daarul Huffadz Peduli <i class="fa fa-check-circle text-blue"></i></span>
             <h5 class="font-bold text-[11px]">{{ Str::limit($row->judul,48) }}</h5>
             <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1 lg:mb-1">

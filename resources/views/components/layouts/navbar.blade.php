@@ -39,7 +39,7 @@
             </li>
             <li class="sidebar-menu-group-title">Main</li>
             <li>
-                <a href="#" class="">
+                <a href="{{route('berita.index')}}" class="{{request()->is('admin/berita/*') ? 'active-page' : ''}}">
                     <iconify-icon icon="hugeicons:news" class="menu-icon"></iconify-icon>
                     <span>Berita</span>
                 </a>

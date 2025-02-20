@@ -3,18 +3,18 @@
     @push('styles')
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
-    /* CSS Code */
-    .swiper-wrapper {
-        width: 100%;
-        height: max-content !important;
-        -webkit-transition-timing-function: linear !important;
-        transition-timing-function: linear !important;
-        position: relative;
-    }
+        /* CSS Code */
+        .swiper-wrapper {
+            width: 100%;
+            height: max-content !important;
+            -webkit-transition-timing-function: linear !important;
+            transition-timing-function: linear !important;
+            position: relative;
+        }
 
-    .swiper-pagination-bullet {
-        background: #4f46e5;
-    }
+        .swiper-pagination-bullet {
+            background: #4f46e5;
+        }
     </style>
     @endpush
 
@@ -93,9 +93,9 @@
             </div>
         </x-slot>
         <x-slot name="lainnya">
-            <div class="pl-4 pt-4 pr-4">
+            <div class="px-4">
                 <a href="{{route('program')}}">
-                    <div class="w-100 bg-sky-500 h-9 rounded-md flex items-center justify-center">
+                    <div class="w-100 bg-sky-500 hover:bg-sky-600 h-9 rounded-md flex items-center justify-center">
                         <p class=" text-md font-medium text-white">Lihat Semua Program</p>
                     </div>
                 </a>
@@ -111,32 +111,32 @@
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-    var swiper = new Swiper(".mySwiper", {
-        cssMode: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-        },
-        mousewheel: true,
-        keyboard: true,
-    });
+        var swiper = new Swiper(".mySwiper", {
+            cssMode: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            mousewheel: true,
+            keyboard: true,
+        });
     </script>
 
     <script>
-    var swiper = new Swiper(".default-carousel", {
-        loop: true,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        autoplay: {
-            delay: 2100,
-            disableOnInteraction: false,
-        },
-    });
+        var swiper = new Swiper(".default-carousel", {
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            autoplay: {
+                delay: 2100,
+                disableOnInteraction: false,
+            },
+        });
     </script>
 
     @endpush

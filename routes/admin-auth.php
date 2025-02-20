@@ -1,19 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Berita;
+use App\Http\Controllers\Admin\TesController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\DonasiController;
 use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ListBeritaController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\Auth\LoginAdminController;
 use App\Http\Controllers\Admin\BeritaPenyaluranController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
-use App\Http\Controllers\Admin\ListBeritaController;
-use App\Http\Controllers\Admin\TesController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
@@ -46,6 +48,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('program', ProgramController::class);
 
         Route::resource('berita-penyaluran', BeritaPenyaluranController::class);
+
+        Route::resource('berita', BeritaController::class);
 
         Route::get('berita-penyaluran/{id}/{program_id}', [ListBeritaController::class, 'show'])->name('list-berita.show');
 

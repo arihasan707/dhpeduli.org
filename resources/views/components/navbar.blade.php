@@ -7,6 +7,14 @@
         </a>
     </div>
     <div class="basis-28 text-slate-300 flex justify-center pt-1 text-center">
+        <a href="{{route('berita')}}" class="group">
+            <i
+                class="text-2xl fa-solid fa-newspaper navbar-hover {{ request()->is('berita') || request()->is('program/search') ? 'text-red-500' : '' }}"></i>
+            <span
+                class="text-[#999999] text-[10px] block group-hover:text-red-500 {{ request()->is('berita') || request()->is('berita') ? 'text-red-500' : '' }}">Berita</span>
+        </a>
+    </div>
+    <div class="basis-28 text-slate-300 flex justify-center pt-1 text-center">
         <a href="{{ Illuminate\Support\Facades\Auth::user() ? route('donation',['status'=>'success']) : route('donation') }}"
             class="group">
             <i

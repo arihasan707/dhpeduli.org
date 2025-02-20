@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DonasiController;
-use App\Http\Controllers\DonationController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\DonationController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
@@ -54,6 +55,9 @@ Route::get('page/kontak', function () {
 Route::get('page/faq', function () {
     return view('faq');
 })->name('faq');
+
+//route berita
+Route::get('berita', [BeritaController::class, 'index'])->name('berita');
 
 //route search
 Route::get('program/search', [ProgramController::class, 'search'])->name('search');
