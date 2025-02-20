@@ -39,6 +39,12 @@
             </li>
             <li class="sidebar-menu-group-title">Main</li>
             <li>
+                <a href="#" class="">
+                    <iconify-icon icon="hugeicons:news" class="menu-icon"></iconify-icon>
+                    <span>Berita</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('donasi.index')}}" class="{{request()->is('admin/donasi') ? 'active-page' : ''}}">
                     <iconify-icon icon="hugeicons:favourite" class="menu-icon"></iconify-icon>
                     <span>Donasi</span>

@@ -313,9 +313,9 @@
         <div class="flex items-center justify-between mb-8">
             <h3 class="font-bold text-sm flex-1">Berita Terbaru</h3><a
                 class="text-darkblue-500 hover:text-darkblue-700 font-medium text-sm flex items-center"
-                href="/sedekah-untuk-berbuka-puasa-senin-kamis/news?utm=list_program">Lihat Semua <svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                href="{{route('news',$program,'tes')}}">Lihat Semua <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="ml-1">
                     <polyline points="9 18 15 12 9 6"></polyline>
                 </svg></a>
         </div>
@@ -323,7 +323,7 @@
             <div class="content content-clipper-lg ">
                 <div class="news-item pb-5 relative">
                     <div class="">
-                        <p class="text-sm text-gray-600 mb-1">27 Dec 2024</p>
+                        <p class="text-sm text-gray-600 mb-1">{{ date_format($berita->created_at, 'd M Y') }}</p>
                         <p class="font-semibold mb-3 text-sm">{{ $berita->judul }}</p>
                         <div class="content leading-relaxed text-gray-600 text-sm">
                             {!! $berita->ket !!}

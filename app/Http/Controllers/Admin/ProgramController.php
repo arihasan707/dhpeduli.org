@@ -67,7 +67,6 @@ class ProgramController extends Controller
             'img' => $file_name,
             'status' => 'publish'
         ]);
-
         return redirect()->route('program.index')->with('status', 'Berhasil program baru telah ditambahkan');
     }
 
@@ -99,14 +98,14 @@ class ProgramController extends Controller
             'kebutuhan' => 'required',
             'tipe_waktu' => 'required',
             'desc_singkat' => 'required',
-            'img' => 'mimes:png,jpg',
+            'img' => 'mimes:png,jpg,jpeg,PNG,JPG,JPEG',
             'detail_program' => 'required'
         ]);
 
         $program = Program::find($id);
 
-        if ($request->img != NULL) {
-            $file_path = public_path() . '/upload/';
+        if ($request->img) {
+            $file_path = public_path() . "/upload/";
             if ($program->img != '' && $program->img != NULL) {
                 $img_old = $file_path . $program->img;
                 unlink($img_old);
@@ -120,8 +119,6 @@ class ProgramController extends Controller
             } else {
                 $waktu = $request->waktu;
             }
-            
-            dd($fileName);
 
             $program->update([
                 'judul' => $request->judul,

@@ -70,11 +70,5 @@ class HomeController extends Controller
         return view('detail', compact('program', 'donasi', 'judulHeader', 'countDonasi', 'terkumpul', 'berita'));
     }
 
-    // public function like(Request $request)
-    // {
-    //     $id_donasi = Donasi::find($request->id);
-
-    //     $like = new Donasi;
-    //     $l
-    // }
+    public function news(Program $program) {}
 }

@@ -23,6 +23,8 @@ Route::get('detail/{program:slug}', [HomeController::class, 'show'])->name('deta
 // route donatur detail
 Route::get('detail/{program:slug}/donatur', [HomeController::class, 'show'])->name('donatur');
 
+Route::get('detail/{program:slug}/news', [HomeController::class, 'news'])->name('news');
+
 // route like
 Route::post('donatur/like', [HomeController::class, 'like'])->name('like');
 
