@@ -31,7 +31,7 @@
                             clip-rule="evenodd" />
                     </svg>
 
-                    20 Feb 2029 14:15 WIB
+                    13 Feb 2023 08:00 WIB
                 </span>
                 <a href="#" class="font-semibold hover:text-sky-500 text-sky-700">Tarhib Ramadhan dan
                     Do'a Bersama Penghafal Al-Qur'an </a>
