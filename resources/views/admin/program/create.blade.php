@@ -163,7 +163,7 @@
                                             </span>
                                             <span class="ql-formats">
                                                 <button class="ql-link"></button>
-                                                <!--<button class="ql-image"></button>-->
+                                                <button class="ql-image"></button>
                                                 <!--<button class="ql-video"></button>-->
                                                 <button class="ql-formula"></button>
                                             </span>
@@ -193,72 +193,81 @@
     <script src="{{ asset('backend/js/editor.highlighted.min.js')}}"></script>
     <script src="{{asset('backend/js/editor.quill.js')}}"></script>
     <script src="{{ asset('backend/js/editor.katex.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill-image-compress@2.0/dist/quill.imageCompressor.min.js"></script>
 
     <!-- mask mata uang -->
     <script src="{{asset('backend/js/jquery.mask.min.js')}}"></script>
 
     <script>
-        // Format mata uang.
-        $('.rupiah').mask('000.000.000.000.000', {
-            reverse: true
-        });
+    // Format mata uang.
+    $('.rupiah').mask('000.000.000.000.000', {
+        reverse: true
+    });
 
-        //Remove flashdata massage
-        $(".remove-button").on("click", function() {
-            $(this).closest(".alert").addClass("d-none");
-        });
+    //Remove flashdata massage
+    $(".remove-button").on("click", function() {
+        $(this).closest(".alert").addClass("d-none");
+    });
 
-        //Add image
-        const fileInput = document.getElementById("upload-file");
-        const imagePreview = document.getElementById("uploaded-img__preview");
-        const uploadedImgContainer = document.querySelector(".uploaded-img");
-        const removeButton = document.querySelector(".uploaded-img__remove");
+    //Add image
+    const fileInput = document.getElementById("upload-file");
+    const imagePreview = document.getElementById("uploaded-img__preview");
+    const uploadedImgContainer = document.querySelector(".uploaded-img");
+    const removeButton = document.querySelector(".uploaded-img__remove");
 
-        fileInput.addEventListener("change", (e) => {
-            if (e.target.files.length) {
-                const src = URL.createObjectURL(e.target.files[0]);
-                imagePreview.src = src;
-                uploadedImgContainer.classList.remove('d-none');
+    fileInput.addEventListener("change", (e) => {
+        if (e.target.files.length) {
+            const src = URL.createObjectURL(e.target.files[0]);
+            imagePreview.src = src;
+            uploadedImgContainer.classList.remove('d-none');
+        }
+    });
+    removeButton.addEventListener("click", () => {
+        imagePreview.src = "";
+        uploadedImgContainer.classList.add('d-none');
+        fileInput.value = "";
+    });
+
+
+    // Editor Js Start
+    Quill.register("modules/imageCompressor", imageCompressor);
+
+    const quill = new Quill('#editor', {
+        modules: {
+            syntax: true,
+            toolbar: '#toolbar-container',
+            imageCompressor: {
+                quality: 0.8,
+                maxWidth: 1000, // default
+                maxHeight: 1000, // default
+                imageType: 'image/jpeg'
             }
-        });
-        removeButton.addEventListener("click", () => {
-            imagePreview.src = "";
-            uploadedImgContainer.classList.add('d-none');
-            fileInput.value = "";
-        });
+        },
+        placeholder: 'Silahkan tulis detail tentang program..',
+        theme: 'snow',
+    });
+    quill.on('text-change', function() {
+        $("input[name='detail_program']").val(quill.root.innerHTML);
+    })
 
 
-        // Editor Js Start
-        const quill = new Quill('#editor', {
-            modules: {
-                syntax: true,
-                toolbar: '#toolbar-container',
-            },
-            placeholder: 'Silahkan tulis detail tentang program..',
-            theme: 'snow',
-        });
-        quill.on('text-change', function() {
-            $("input[name='detail_program']").val(quill.root.innerHTML);
-        })
+    // Editor Js End
 
+    let table = new DataTable('#dataTable');
 
-        // Editor Js End
-
-        let table = new DataTable('#dataTable');
-
-        $('#tenggatWaktu').on('change', function() {
-            let val = $(this, "option:selected").val()
-            if (val == "1") {
-                $(this).closest('div').removeClass('col-lg-6')
-                $(this).closest('div').addClass('col-lg-3')
-                $("input[name='waktu']").closest('div').show()
-                $("input[name='waktu']").attr('name', 'waktu')
-            } else {
-                $("input[name='waktu']").closest('div').hide()
-                $(this).closest('div').addClass('col-lg-6')
-                $(this).closest('div').removeClass('col-lg-3')
-            }
-        })
+    $('#tenggatWaktu').on('change', function() {
+        let val = $(this, "option:selected").val()
+        if (val == "1") {
+            $(this).closest('div').removeClass('col-lg-6')
+            $(this).closest('div').addClass('col-lg-3')
+            $("input[name='waktu']").closest('div').show()
+            $("input[name='waktu']").attr('name', 'waktu')
+        } else {
+            $("input[name='waktu']").closest('div').hide()
+            $(this).closest('div').addClass('col-lg-6')
+            $(this).closest('div').removeClass('col-lg-3')
+        }
+    })
     </script>
 
     @endpush
