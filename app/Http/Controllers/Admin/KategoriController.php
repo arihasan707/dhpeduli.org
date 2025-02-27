@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
 
 class KategoriController extends Controller
 {
@@ -36,18 +38,20 @@ class KategoriController extends Controller
             'gambar' => 'required|mimes:png,jpg'
         ]);
 
-        $file_path = public_path('upload');
-
         if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $file_name = time() . $file->getClientOriginalName();
+            $upload = $request->file('gambar');
+            //resize gambar
+            $image = Image::read($upload)->cover(600, 450);
 
-            $file->move($file_path, $file_name);
+            $imageName = time() . '.' . $upload->getClientOriginalExtension();
+            $thumbImage =  $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 20);
+
+            Storage::disk('upload')->put($imageName, $thumbImage);
         }
 
         Kategori::create([
             'nama' => $request->nama,
-            'img' => $file_name,
+            'img' => $imageName,
         ]);
 
         return redirect()->route('kategori.index')->with('status', 'Berhasil Kategori baru telah ditambahkan');
