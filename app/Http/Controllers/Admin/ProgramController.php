@@ -7,6 +7,9 @@ use App\Models\Kategori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
+
 
 class ProgramController extends Controller
 {
@@ -35,23 +38,27 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'judul' => 'required',
-            'kategori' => 'required',
-            'kebutuhan' => 'required',
-            'tipe_waktu' => 'required',
-            'desc_singkat' => 'required',
-            'img' => 'required|mimes:png,jpg',
-            'detail_program' => 'required'
-        ]);
+        // $request->validate([
+        //     'judul' => 'required',
+        //     'kategori' => 'required',
+        //     'kebutuhan' => 'required',
+        //     'tipe_waktu' => 'required',
+        //     'desc_singkat' => 'required',
+        //     'img' => 'required|mimes:png,jpg',
+        //     'detail_program' => 'required'
+        // ]);
 
-        $file_path = public_path() . '/upload/';
 
         if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            $file_name = time() . $file->getClientOriginalName();
+            $upload = $request->file('img');
 
-            $file->move($file_path, $file_name);
+            //resize gambar
+            $image = Image::read($upload)->cover(545, 315);
+
+            $imageName = time() . '.' . $upload->getClientOriginalExtension();
+            $thumbImage =  $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 90);
+
+            Storage::disk('upload')->put($imageName, $thumbImage);
         }
 
         Program::create([
@@ -64,7 +71,7 @@ class ProgramController extends Controller
             'sisa' => str::replace(".", "", $request->kebutuhan),
             'tipe_waktu' => $request->tipe_waktu,
             'waktu' => $request->waktu,
-            'img' => $file_name,
+            'img' => $imageName,
             'status' => 'publish'
         ]);
         return redirect()->route('program.index')->with('status', 'Berhasil program baru telah ditambahkan');
@@ -105,14 +112,18 @@ class ProgramController extends Controller
         $program = Program::find($id);
 
         if ($request->img) {
-            $file_path = public_path() . "/upload/";
+            $file_path = public_path() . '/upload/';
             if ($program->img != '' && $program->img != NULL) {
                 $img_old = $file_path . $program->img;
                 unlink($img_old);
             }
+
             $file = $request->img;
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move($file_path, $fileName);
+            $image = Image::read($file)->cover(545, 315);
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            $thumbImage =  $image->encodeByExtension($file->getClientOriginalExtension(), quality: 90);
+
+            Storage::disk('upload')->put($imageName, $thumbImage);
 
             if ($request->tipe_waktu == '0') {
                 $waktu = Null;
@@ -128,7 +139,7 @@ class ProgramController extends Controller
                 'kebutuhan' => str::replace(".", "", $request->kebutuhan),
                 'tipe_waktu' => $request->tipe_waktu,
                 'waktu' => $waktu,
-                'img' => $fileName,
+                'img' => $imageName,
             ]);
         } else {
 

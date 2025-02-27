@@ -40,7 +40,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <div class="d-flex">
-                                <img src="{{asset('upload/'. $row->img)}}" width="135px" alt="gambar_program"
+                                <img src="{{asset('upload/' . $row->img)}}" width="135px" alt="gambar_program"
                                     style="height: 90px;">
                                 <p class="p-3">{{ $row->judul }}
                                 </p>
@@ -80,24 +80,24 @@
 
     @push('scripts')
     <script>
-        let table = new DataTable("#dataTable", {
-            "autoWidth": false,
-            "columns": [{
-                "width": ""
-            }, {
-                "width": "490px"
-            }, {
-                "width": "125px"
-            }, {
-                "width": "225px"
-            }, {
-                "width": "225px"
-            }, {
-                "width": "125px"
-            }, {
-                "width": "140px"
-            }, ]
-        });
+    let table = new DataTable("#dataTable", {
+        "autoWidth": false,
+        "columns": [{
+            "width": ""
+        }, {
+            "width": "490px"
+        }, {
+            "width": "125px"
+        }, {
+            "width": "225px"
+        }, {
+            "width": "225px"
+        }, {
+            "width": "125px"
+        }, {
+            "width": "140px"
+        }, ]
+    });
     </script>
     @endpush
 
