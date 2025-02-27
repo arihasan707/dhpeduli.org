@@ -38,15 +38,15 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'judul' => 'required',
-        //     'kategori' => 'required',
-        //     'kebutuhan' => 'required',
-        //     'tipe_waktu' => 'required',
-        //     'desc_singkat' => 'required',
-        //     'img' => 'required|mimes:png,jpg',
-        //     'detail_program' => 'required'
-        // ]);
+        $request->validate([
+            'judul' => 'required',
+            'kategori' => 'required',
+            'kebutuhan' => 'required',
+            'tipe_waktu' => 'required',
+            'desc_singkat' => 'required',
+            'img' => 'required|mimes:png,jpg',
+            'detail_program' => 'required'
+        ]);
 
 
         if ($request->hasFile('img')) {
