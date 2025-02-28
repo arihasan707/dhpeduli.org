@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Program;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BeritaController extends Controller
 {
@@ -24,7 +25,9 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Tambah Berita';
+        $dataProg = Program::all();
+        return view('admin.berita.create', compact('title', 'dataProg'));
     }
 
     /**
