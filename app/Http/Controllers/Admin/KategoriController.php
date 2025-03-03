@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
 
+use function PHPUnit\Framework\isEmpty;
+
 class KategoriController extends Controller
 {
     /**
@@ -86,7 +88,9 @@ class KategoriController extends Controller
             $file_path = public_path() . '/upload/';
             if ($kategori->img != '' && $kategori->img != NULL) {
                 $img_old = $file_path . $kategori->img;
-                unlink($img_old);
+                if (!isEmpty()) {
+                    unlink($img_old);
+                }
             }
 
             $file = $request->img;
