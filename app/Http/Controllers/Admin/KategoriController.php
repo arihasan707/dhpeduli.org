@@ -70,7 +70,9 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kategori = Kategori::find($id);
+        $title = 'Edit Kategori';
+        return view('admin.kategori.edit', compact('kategori', 'title'));
     }
 
     /**
@@ -78,7 +80,34 @@ class KategoriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $kategori = Kategori::find($id);
+
+        if ($request->img) {
+            $file_path = public_path() . '/upload/';
+            if ($kategori->img != '' && $kategori->img != NULL) {
+                $img_old = $file_path . $kategori->img;
+                unlink($img_old);
+            }
+
+            $file = $request->img;
+            $image = Image::read($file)->cover(545, 315);
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            $thumbImage =  $image->encodeByExtension($file->getClientOriginalExtension(), quality: 90);
+
+            Storage::disk('upload')->put($imageName, $thumbImage);
+
+            $kategori->update([
+                'nama' => $request->nama,
+                'img' => $imageName,
+            ]);
+        } else {
+
+            $kategori->update([
+                'nama' => $request->nama,
+            ]);
+        }
+
+        return redirect()->route('kategori.index')->with('status', 'Berhasil kategori telah diubah');
     }
 
     /**

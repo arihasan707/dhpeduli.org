@@ -36,9 +36,15 @@
                                     <td>
                                         <form action="{{route('kategori.destroy',$row->id)}}" method="Post">
                                             @csrf
+                                            <a href="{{route('kategori.edit',$row->id)}}"
+                                                class="w-32-px h-32-px bg-success text-white text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                                                <iconify-icon icon="lucide:edit"></iconify-icon>
+                                            </a>
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger"> <i
-                                                    class="ri-delete-bin-line text-md"></i> Hapus</button>
+                                            <button type="submit" style="position: relative; bottom:4px;"
+                                                class="w-32-px h-32-px bg-danger text-white text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                                                <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
@@ -116,22 +122,22 @@
         });
 
         //Add image
-        const fileInput = document.getElementById("upload-file");
-        const imagePreview = document.getElementById("uploaded-img__preview");
-        const uploadedImgContainer = document.querySelector(".uploaded-img");
-        const removeButton = document.querySelector(".uploaded-img__remove");
+        const file = document.getElementById("upload-fil");
+        const imagePre = document.getElementById("uploaded-img__previe");
+        const uploadedImgCon = document.querySelector(".uploaded-im");
+        const removeBu = document.querySelector(".uploaded-img__remov");
 
-        fileInput.addEventListener("change", (e) => {
+        file.addEventListener("change", (e) => {
             if (e.target.files.length) {
                 const src = URL.createObjectURL(e.target.files[0]);
-                imagePreview.src = src;
-                uploadedImgContainer.classList.remove('d-none');
+                imagePre.src = src;
+                uploadedImgCon.classList.remove('d-none');
             }
         });
-        removeButton.addEventListener("click", () => {
-            imagePreview.src = "";
-            uploadedImgContainer.classList.add('d-none');
-            fileInput.value = "";
+        removeBu.addEventListener("click", () => {
+            imagePre.src = "";
+            uploadedImgCon.classList.add('d-none');
+            file.value = "";
         });
     </script>
     @endpush
