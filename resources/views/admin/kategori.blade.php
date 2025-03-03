@@ -122,10 +122,10 @@
         });
 
         //Add image
-        const file = document.getElementById("upload-fil");
-        const imagePre = document.getElementById("uploaded-img__previe");
-        const uploadedImgCon = document.querySelector(".uploaded-im");
-        const removeBu = document.querySelector(".uploaded-img__remov");
+        const file = document.getElementById("upload-file");
+        const imagePre = document.getElementById("uploaded-img__preview");
+        const uploadedImgCon = document.querySelector(".uploaded-img");
+        const removeBu = document.querySelector(".uploaded-img__remove");
 
         file.addEventListener("change", (e) => {
             if (e.target.files.length) {
