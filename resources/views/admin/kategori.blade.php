@@ -122,22 +122,22 @@
         });
 
         //Add image
-        const file = document.getElementById("upload-file");
-        const imagePre = document.getElementById("uploaded-img__preview");
-        const uploadedImgCon = document.querySelector(".uploaded-img");
-        const removeBu = document.querySelector(".uploaded-img__remove");
+        const fileInput = document.getElementById("upload-file");
+        const imagePreview = document.getElementById("uploaded-img__preview");
+        const uploadedImgContainer = document.querySelector(".uploaded-img");
+        const removeButton = document.querySelector(".uploaded-img__remove");
 
-        file.addEventListener("change", (e) => {
+        fileInput.addEventListener("change", (e) => {
             if (e.target.files.length) {
                 const src = URL.createObjectURL(e.target.files[0]);
-                imagePre.src = src;
-                uploadedImgCon.classList.remove('d-none');
+                imagePreview.src = src;
+                uploadedImgContainer.classList.remove('d-none');
             }
         });
-        removeBu.addEventListener("click", () => {
-            imagePre.src = "";
-            uploadedImgCon.classList.add('d-none');
-            file.value = "";
+        removeButton.addEventListener("click", () => {
+            imagePreview.src = "";
+            uploadedImgContainer.classList.add('d-none');
+            fileInput.value = "";
         });
     </script>
     @endpush
