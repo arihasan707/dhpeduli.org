@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Program;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BeritaUmum extends Model
 {
@@ -12,7 +14,14 @@ class BeritaUmum extends Model
     protected $fillable = [
         'prog_id',
         'judul',
+        'foto',
         'slug',
+        'cta',
         'isi'
     ];
+
+    public function Program(): BelongsTo
+    {
+        return $this->belongsTo(Program::class, 'prog_id');
+    }
 }

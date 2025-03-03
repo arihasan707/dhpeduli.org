@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Program;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\BeritaUmum;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
 
 class BeritaController extends Controller
 {
@@ -15,6 +19,7 @@ class BeritaController extends Controller
     {
         $data = [
             'title' => 'Berita',
+            'berita' => BeritaUmum::orderBy('created_at', 'desc')->get()
         ];
 
         return view('admin.berita.index', $data);
@@ -35,7 +40,27 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('foto')) {
+            $upload = $request->file('foto');
+
+            //resize gambar
+            $image = Image::read($upload)->cover(545, 315);
+
+            $imageName = time() . '.' . $upload->getClientOriginalExtension();
+            $thumbImage =  $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 90);
+
+            Storage::disk('upload-berita')->put($imageName, $thumbImage);
+        }
+
+        BeritaUmum::create([
+            'prog_id' => $request->prog,
+            'judul' => $request->judul,
+            'foto' => $imageName,
+            'slug' => Str::slug($request->judul),
+            'cta' => $request->cta,
+            'isi' => $request->isi_berita,
+        ]);
+        return redirect()->route('berita.index')->with('status', 'Berhasil berita baru telah ditambahkan');
     }
 
     /**

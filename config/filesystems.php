@@ -59,6 +59,11 @@ return [
         'upload' => [
             'driver' => 'local',
             'root' => public_path() . '/upload'
+        ],
+
+        'upload-berita' => [
+            'driver' => 'local',
+            'root' => public_path() . '/upload/berita'
         ]
 
     ],

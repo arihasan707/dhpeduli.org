@@ -1,13 +1,19 @@
 <x-layouts.admin-layout>
 
+
+    @push('styles')
+    <link rel="stylesheet" href="{{asset('backend/css/lib/editor-katex.min.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/css/lib/editor.atom-one-dark.min.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/css/lib/editor.quill.snow.css')}}">
+    @endpush
+
     <x-layouts.navbar />
 
     <x-breadcrumb :title="$title" />
 
-
     <div class="row gy-4">
         <div class="col-md-12">
-            <form action="{{route('program.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('berita.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
@@ -20,11 +26,11 @@
                                 <iconify-icon icon="pepicons-pencil:paper-plane" class="text-xl"></iconify-icon>
                                 Publish
                             </button>
-                            <a href="javascript:void(0)"
+                            <!-- <a href="javascript:void(0)"
                                 class="btn btn-sm btn-warning radius-8 d-inline-flex align-items-center gap-1">
                                 <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
                                 Draf
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -43,8 +49,8 @@
                                 </select>
                             </div>
                             <div class="col-lg-8">
-                                <label class="form-label">Deskripsi Singkat/Ajakan</label>
-                                <textarea name="desc_singkat" class="form-control" rows="4" cols="50"
+                                <label class="form-label">Kalimat Ajakan</label>
+                                <textarea name="cta" class="form-control" rows="4" cols="50"
                                     placeholder="Masukan deskripsi singkat..."></textarea>
                             </div>
                             <div class="col-lg-4">
@@ -66,9 +72,17 @@
                                         <iconify-icon icon="solar:camera-outline" class="text-xl text-secondary-light">
                                         </iconify-icon>
                                         <span class="fw-semibold text-secondary-light">Upload</span>
-                                        <input id="upload-file" type="file" name="img" hidden>
+                                        <input id="upload-file" type="file" name="foto" hidden>
                                     </label>
                                 </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Detail Isi Berita</label>
+                                <x-part.quill-editor>
+                                    <!-- Editor start -->
+                                    <input type="hidden" name="isi_berita">
+                                    <div id="editor"></div>
+                                </x-part.quill-editor>
                             </div>
                             <!-- @error('gambar')
                                 <div class=" @error('nama')
@@ -76,73 +90,74 @@
                                 @enderror"></div>
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror -->
-
-
-                            <div class="col-12">
-                                <label class="form-label">Deskripsi Detail Program</label>
-                                <div class="card basic-data-table radius-12 overflow-hidden">
-                                    <div class="card-body p-0">
-                                        <!-- Editor Toolbar Start -->
-                                        <div id="toolbar-container">
-                                            <span class="ql-formats">
-                                                <select class="ql-font"></select>
-                                                <select class="ql-size"></select>
-                                            </span>
-                                            <span class="ql-formats">
-                                                <button class="ql-bold"></button>
-                                                <button class="ql-italic"></button>
-                                                <button class="ql-underline"></button>
-                                                <button class="ql-strike"></button>
-                                            </span>
-                                            <span class="ql-formats">
-                                                <select class="ql-color"></select>
-                                                <select class="ql-background"></select>
-                                            </span>
-                                            <span class="ql-formats">
-                                                <button class="ql-script" value="sub"></button>
-                                                <button class="ql-script" value="super"></button>
-                                            </span>
-                                            <span class="ql-formats">
-                                                <button class="ql-header" value="1"></button>
-                                                <button class="ql-header" value="2"></button>
-                                                <button class="ql-blockquote"></button>
-                                                <button class="ql-code-block"></button>
-                                            </span>
-                                            <span class="ql-formats">
-                                                <button class="ql-list" value="ordered"></button>
-                                                <button class="ql-list" value="bullet"></button>
-                                                <button class="ql-indent" value="-1"></button>
-                                                <button class="ql-indent" value="+1"></button>
-                                            </span>
-                                            <span class="ql-formats">
-                                                <button class="ql-direction" value="rtl"></button>
-                                                <select class="ql-align"></select>
-                                            </span>
-                                            <span class="ql-formats">
-                                                <button class="ql-link"></button>
-                                                <!--<button class="ql-image"></button>-->
-                                                <!--<button class="ql-video"></button>-->
-                                                <button class="ql-formula"></button>
-                                            </span>
-                                            <span class="ql-formats">
-                                                <button class="ql-clean"></button>
-                                            </span>
-                                        </div>
-                                        <!-- Editor Toolbar Start -->
-
-                                        <!-- Editor start -->
-                                        <input type="hidden" name="detail_program">
-                                        <div id="editor"></div>
-
-                                        <!-- Edit End -->
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div><!-- card end -->
+
+    @push('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script src="{{ asset('backend/js/editor.highlighted.min.js')}}"></script>
+    <script src="{{asset('backend/js/editor.quill.js')}}"></script>
+    <script src="{{ asset('backend/js/editor.katex.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill-image-compress@2.0/dist/quill.imageCompressor.min.js"></script>
+
+    <script>
+        //Remove flashdata massage
+        $(".remove-button").on("click", function() {
+            $(this).closest(".alert").addClass("d-none");
+        });
+
+        //Add image
+        const fileInput = document.getElementById("upload-file");
+        const imagePreview = document.getElementById("uploaded-img__preview");
+        const uploadedImgContainer = document.querySelector(".uploaded-img");
+        const removeButton = document.querySelector(".uploaded-img__remove");
+
+        fileInput.addEventListener("change", (e) => {
+            if (e.target.files.length) {
+                const src = URL.createObjectURL(e.target.files[0]);
+                imagePreview.src = src;
+                uploadedImgContainer.classList.remove('d-none');
+            }
+        });
+        removeButton.addEventListener("click", () => {
+            imagePreview.src = "";
+            uploadedImgContainer.classList.add('d-none');
+            fileInput.value = "";
+        });
+
+
+        // Editor Js Start
+        Quill.register("modules/imageCompressor", imageCompressor);
+
+        const quill = new Quill('#editor', {
+            modules: {
+                syntax: true,
+                toolbar: '#toolbar-container',
+                imageCompressor: {
+                    quality: 0.8,
+                    maxWidth: 1000, // default
+                    maxHeight: 1000, // default
+                    imageType: 'image/jpeg'
+                }
+            },
+            placeholder: 'Silahkan tulis detail tentang program..',
+            theme: 'snow',
+        });
+        quill.on('text-change', function() {
+            $("input[name='isi_berita']").val(quill.root.innerHTML);
+        })
+
+
+        // Editor Js End
+
+        let table = new DataTable('#dataTable');
+    </script>
+
+    @endpush
 
 </x-layouts.admin-layout>

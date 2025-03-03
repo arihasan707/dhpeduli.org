@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('prog_id');
             $table->foreign('prog_id')->references('id')->on('programs');
             $table->string('judul');
+            $table->string('foto');
             $table->string('slug');
             $table->longText('isi');
             $table->timestamps();

@@ -18,6 +18,6 @@
 
     <x-navbar />
 
-    <x-part.card-berita-umum :$berita />
+    <x-berita-detail :$berita />
 
 </x-app-layout>

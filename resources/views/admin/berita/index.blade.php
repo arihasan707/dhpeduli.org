@@ -27,15 +27,49 @@
                         <th scope="col">No</th>
                         <th scope="col">Foto</th>
                         <th scope="col">Judul</th>
+                        <th scope="col">Ajakan</th>
                         <th scope="col">Program Terkait</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($berita as $row)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td><img src="{{asset('upload/berita/' . $row->foto)}}" width="150"></td>
+                        <td>{{ $row->judul }}</td>
+                        <td>{{ $row->cta }}</td>
+                        <td>{{ $row->Program->judul }}</td>
+                        <td>
+                            <form action="{{route('berita.destroy', $row->id)}}" method="POST">
+                                <!-- <a href="{{route('program.show', $row->id)}}"
+                                    class="w-32-px h-32-px bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center">
+                                    <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                                </a>
+                                <a href="{{route('program.edit', $row->id)}}"
+                                    class="w-32-px h-32-px bg-success text-white text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                                    <iconify-icon icon="lucide:edit"></iconify-icon>
+                                </a> -->
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="position: relative; bottom:4px;"
+                                    class="w-32-px h-32-px bg-danger text-white text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                                    <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
+                                </button>
 
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        let table = new DataTable("#dataTable");
+    </script>
+    @endpush
 
 </x-layouts.admin-layout>

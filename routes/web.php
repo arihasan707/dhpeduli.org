@@ -57,7 +57,7 @@ Route::get('page/faq', function () {
 })->name('faq');
 
 //route berita
-Route::get('berita', [BeritaController::class, 'index'])->name('berita');
+Route::get('berita/{berita:slug?}', [BeritaController::class, 'index'])->name('berita');
 
 //route search
 Route::get('program/search', [ProgramController::class, 'search'])->name('search');
