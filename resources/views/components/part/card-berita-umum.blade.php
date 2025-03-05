@@ -3,7 +3,7 @@ $i = 0;
 $len = count($berita);
 @endphp
 
-@foreach ($berita as $row)
+@forelse ($berita as $row)
 @if ($i == $len - 1)
 <div class="px-4 relative top-7 h-[33rem] pb-5">
     <div class="bg-white rounded-md shadow-xl border-[1.1px]">
@@ -60,5 +60,17 @@ $len = count($berita);
 @php
 $i++
 @endphp
+@empty
+<div class="px-4 relative top-7 h-[33rem] pb-5">
+    <div class="rounded-md shadow-xl border-[1.1px]">
+        <div class="text-center mt-32">
+            <div class="flex justify-center mb-4 opacity-30">
+                <img src="{{ asset('img/log.png') }}">
+            </div>
+            <h3 class="text-gray-600 font-semibold text-xs mb-1 leading-none">Belum ada berita terbaru</h3>
+            <p class="text-gray-600 text-xs my-0">berita empty</p>
+        </div>
+    </div>
+</div>
 
-@endforeach
+@endforelse
