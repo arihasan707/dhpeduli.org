@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Laravel\Facades\Image;
-
+use Intervention\Image\ImageManager;
 use function PHPUnit\Framework\isEmpty;
+
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+// use Intervention\Image\Laravel\Facades\Image;
 
 class KategoriController extends Controller
 {
@@ -35,6 +37,10 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
+        $manager = new ImageManager(
+            new Driver()
+        );
+
         $request->validate([
             'nama' => 'required|unique:kategoris,nama',
             'gambar' => 'required|mimes:png,jpg'
@@ -43,7 +49,7 @@ class KategoriController extends Controller
         if ($request->hasFile('gambar')) {
             $upload = $request->file('gambar');
             //resize gambar
-            $image = Image::read($upload)->cover(600, 450);
+            $image = $manager->read($upload)->cover(600, 450);
 
             $imageName = time() . '.' . $upload->getClientOriginalExtension();
             $thumbImage =  $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 20);
