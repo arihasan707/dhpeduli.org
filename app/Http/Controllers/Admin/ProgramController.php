@@ -7,12 +7,20 @@ use App\Models\Kategori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\Drivers\Gd\Driver;
 
 
 class ProgramController extends Controller
 {
+    public $manager;
+    public function __construct()
+    {
+        $this->manager = new ImageManager(
+            new Driver()
+        );
+    }
     /**
      * Display a listing of the resource.
      */
@@ -53,7 +61,7 @@ class ProgramController extends Controller
             $upload = $request->file('img');
 
             //resize gambar
-            $image = Image::read($upload)->cover(545, 315);
+            $image = $this->manager->read($upload)->cover(545, 315);
 
             $imageName = time() . '.' . $upload->getClientOriginalExtension();
             $thumbImage =  $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 90);
@@ -119,7 +127,7 @@ class ProgramController extends Controller
             }
 
             $file = $request->img;
-            $image = Image::read($file)->cover(545, 315);
+            $image = $this->manager->read($file)->cover(545, 315);
             $imageName = time() . '.' . $file->getClientOriginalExtension();
             $thumbImage =  $image->encodeByExtension($file->getClientOriginalExtension(), quality: 90);
 

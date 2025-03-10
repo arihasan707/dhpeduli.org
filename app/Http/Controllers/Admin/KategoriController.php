@@ -14,6 +14,13 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class KategoriController extends Controller
 {
+    public $manager;
+    public function __construct()
+    {
+        $this->manager = new ImageManager(
+            new Driver()
+        );
+    }
     /**
      * Display a listing of the resource.
      */
@@ -37,10 +44,6 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $manager = new ImageManager(
-            new Driver()
-        );
-
         $request->validate([
             'nama' => 'required|unique:kategoris,nama',
             'gambar' => 'required|mimes:png,jpg'
@@ -49,7 +52,7 @@ class KategoriController extends Controller
         if ($request->hasFile('gambar')) {
             $upload = $request->file('gambar');
             //resize gambar
-            $image = $manager->read($upload)->cover(600, 450);
+            $image = $this->manager->read($upload)->cover(600, 450);
 
             $imageName = time() . '.' . $upload->getClientOriginalExtension();
             $thumbImage =  $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 20);
@@ -100,7 +103,7 @@ class KategoriController extends Controller
             }
 
             $file = $request->img;
-            $image = Image::read($file)->cover(545, 315);
+            $image = $this->manager->read($file)->cover(545, 315);
             $imageName = time() . '.' . $file->getClientOriginalExtension();
             $thumbImage =  $image->encodeByExtension($file->getClientOriginalExtension(), quality: 90);
 
