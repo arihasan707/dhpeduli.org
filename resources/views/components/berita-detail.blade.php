@@ -1,4 +1,4 @@
-<div class="px-4 relative top-7 pb-28">
+<div class="relative top-7 pb-28">
     <div class="bg-white rounded-md">
         <div class="p-4">
             <div class="flex items-center mb-7">

@@ -1,4 +1,4 @@
-<div class=" text-xs">
+<div class="text-xs">
     <div class="pb-5 text-justify text-slate-800">
         <span>{{ $row->cta }}</span>
     </div>
@@ -6,7 +6,7 @@
 </div>
 <div class="mb-2 grid pt-2">
     <p class="text-sky-600 font-semibold text-sm mb-1 text-center">Klik link donasi di bawah ini</p>
-    <a href="{{route('detail',$row->Program->slug)}}" class="flex flex-row px-4">
+    <a href="{{route('detail',$row->Program->slug)}}" class="flex flex-row">
         <div class="basis-2/3">
             <img src="{{asset('upload/'.$row->Program->img)}}" alt="flayer"
                 class="rounded-s-md border-slate-100 shadow-lg border-1">
