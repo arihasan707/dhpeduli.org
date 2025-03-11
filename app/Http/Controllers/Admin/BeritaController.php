@@ -3,15 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Program;
+use App\Models\BeritaUmum;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\BeritaUmum;
+use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class BeritaController extends Controller
 {
+    public $manager;
+    public function __construct()
+    {
+        $this->manager = new ImageManager(
+            new Driver()
+        );
+    }
     /**
      * Display a listing of the resource.
      */
@@ -44,7 +52,7 @@ class BeritaController extends Controller
             $upload = $request->file('foto');
 
             //resize gambar
-            $image = Image::read($upload)->cover(545, 315);
+            $image = $this->manager->read($upload)->cover(545, 315);
 
             $imageName = time() . '.' . $upload->getClientOriginalExtension();
             $thumbImage =  $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 90);
