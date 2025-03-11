@@ -6,11 +6,11 @@ $len = count($berita);
 @forelse ($berita as $row)
 @if ($i == $len - 1)
 <div class="px-4 relative top-7 h-[33rem] pb-5">
-    <div class="bg-white rounded-md shadow-xl border-[1.1px]">
-        <div class="p-4">
-            <div class="flex items-center mb-7">
-                <img class="rounded-md" src="{{asset('upload/berita/' . $row->foto)}}" alt="" srcset="">
-            </div>
+    <div class="bg-white rounded-md shadow-xl border-x-[1.1px]">
+        <div class="flex items-center mb-7">
+            <img class="rounded-t-md" src="{{asset('upload/berita/' . $row->foto)}}" alt="" srcset="">
+        </div>
+        <div class="px-4 pb-4">
             <span class="text-xs text-[#999999] flex gap-1 mb-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                     <path fill-rule="evenodd"
@@ -33,10 +33,10 @@ $len = count($berita);
 @else
 <div class="px-4 relative top-7 pb-5">
     <div class="bg-white rounded-md shadow-xl border-[1.1px]">
-        <div class="p-4">
-            <div class="flex items-center mb-7">
-                <img class="rounded-md" src="{{asset('upload/berita/' . $row->foto)}}" alt="" srcset="">
-            </div>
+        <div class="flex items-center mb-7">
+            <img class="rounded-t-md" src="{{asset('upload/berita/' . $row->foto)}}" alt="" srcset="">
+        </div>
+        <div class="px-4 pb-4">
             <span class="text-xs text-[#999999] flex gap-1 mb-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                     <path fill-rule="evenodd"
