@@ -1,4 +1,9 @@
-<div class="pl-4 pt-5 font-semibold text-sm italic text-slate-800">{{ $row->cta }}</div>
+<div class=" text-xs">
+    <div class="pb-5 text-justify text-slate-800">
+        <span>{{ $row->cta }}</span>
+    </div>
+    <p>Silahkan salurkan sedekah terbaiknya :</p>
+</div>
 <div class="mb-2 grid pt-2">
     <p class="text-sky-600 font-semibold text-sm mb-1 text-center">Klik link donasi di bawah ini</p>
     <a href="{{route('detail',$row->Program->slug)}}" class="flex flex-row px-4">
