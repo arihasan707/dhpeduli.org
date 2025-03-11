@@ -24,7 +24,8 @@ $len = count($berita);
             <div class="font-medium text-xs my-2">{!! Str::limit($row->isi ,130) !!}
             </div>
             <div class=" flex justify-end mt-5">
-                <a href="#" class=" text-red-600 hover:text-red-500 text-xs font-medium">Selengkapnya</a>
+                <a href="{{route('berita' ,$row->slug)}}"
+                    class=" text-red-600 hover:text-red-500 text-xs font-medium">Selengkapnya</a>
             </div>
         </div>
     </div>
@@ -49,7 +50,8 @@ $len = count($berita);
             <div class="font-medium text-xs my-2">{!! Str::limit($row->isi ,130) !!}
             </div>
             <div class=" flex justify-end mt-5">
-                <a href="#" class=" text-red-600 hover:text-red-500 text-xs font-medium">Selengkapnya</a>
+                <a href="{{route('berita' ,$row->slug)}}"
+                    class=" text-red-600 hover:text-red-500 text-xs font-medium">Selengkapnya</a>
             </div>
             <!-- <x-berita-card-program :row="$row" /> -->
         </div>
