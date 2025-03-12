@@ -103,7 +103,8 @@ class KategoriController extends Controller
             }
 
             $file = $request->img;
-            $image = $this->manager->read($file)->cover(545, 315);
+            //resize gambar
+            $image = $this->manager->read($file)->cover(600, 450);
             $imageName = time() . '.' . $file->getClientOriginalExtension();
             $thumbImage =  $image->encodeByExtension($file->getClientOriginalExtension(), quality: 90);
 
