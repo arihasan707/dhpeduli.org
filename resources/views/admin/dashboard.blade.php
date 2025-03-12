@@ -110,7 +110,6 @@
                         <table class="table bordered-table mb-0">
                             <thead>
                                 <tr>
-                                    <th scope="col">Invoice</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Amount</th>
@@ -124,7 +123,6 @@
                                 @else
                                 @foreach ($topDonasi as $row)
                                 <tr>
-                                    <td>{{ $row->kode }}</td>
                                     <td>{{ $row->nama }}</td>
                                     <td>{{ date_format($row->created_at, 'd-M-Y') }}</td>
                                     <td>@rupiah($row->amount)</td>
@@ -153,7 +151,6 @@
                         <table class="table bordered-table mb-0">
                             <thead>
                                 <tr>
-                                    <th scope="col">Invoice</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Amount</th>
@@ -167,7 +164,6 @@
                                 @else
                                 @foreach ($donasiTerbaru as $row)
                                 <tr>
-                                    <td>{{ $row->kode }}</td>
                                     <td>{{ $row->nama }}</td>
                                     <td>{{ date_format($row->created_at, 'd-M-Y') }}</td>
                                     <td>@rupiah($row->amount)</td>
