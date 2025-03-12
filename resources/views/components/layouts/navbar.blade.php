@@ -67,16 +67,25 @@
             </li>
 
             <li class="sidebar-menu-group-title">Sistem</li>
-
+            <li>
+                <a href="{{route('banner.index')}}" class="{{request()->is('admin/banner/*') ? 'active-page' : ''}}">
+                    <iconify-icon icon="hugeicons:image-03" class="menu-icon">
+                    </iconify-icon>
+                    <span>Banner</span>
+                </a>
+            </li>
             <li>
                 <a href="javascript:void(0)">
                     <iconify-icon icon="simple-line-icons:vector" class="menu-icon"></iconify-icon>
                     <span>Pengaturan</span>
                 </a>
-                <a href="javascript:void(0)">
-                    <iconify-icon icon="hugeicons:logout-circle-01" class="menu-icon"></iconify-icon>
-                    <span>Logout</span>
-                </a>
+                <form action="{{route('admin.logout')}}" method="post">
+                    @csrf
+                    <button type="submit">
+                        <iconify-icon icon="hugeicons:logout-circle-01" class="menu-icon"></iconify-icon>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </li>
         </ul>
     </div>

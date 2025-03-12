@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Banner;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Berita;
 use App\Http\Controllers\Admin\TesController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\DonasiController;
 use App\Http\Controllers\Admin\ProgramController;
@@ -50,6 +52,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('berita-penyaluran', BeritaPenyaluranController::class);
 
         Route::resource('berita', BeritaController::class);
+
+        Route::resource('banner', BannerController::class);
 
         Route::get('berita-penyaluran/{id}/{program_id}', [ListBeritaController::class, 'show'])->name('list-berita.show');
 

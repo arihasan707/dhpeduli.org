@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\BeritaPenyaluran;
 use App\Models\Donasi;
 use App\Models\Program;
@@ -17,9 +18,10 @@ class HomeController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        $program = Program::query()->orderBy('id', 'desc')->get();
+        $program = Program::orderBy('id', 'desc')->get();
+        $banner = Banner::orderBy('created_at', 'desc')->get();
 
-        return view('home', compact('kategori', 'program'));
+        return view('home', compact('kategori', 'program', 'banner'));
     }
 
     public function show(Program $program, Request $request)

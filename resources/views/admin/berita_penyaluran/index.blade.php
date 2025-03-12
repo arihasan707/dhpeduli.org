@@ -107,6 +107,11 @@
 
     @push('scripts')
     <script>
+        //Remove flashdata massage
+        $(".remove-button").on("click", function() {
+            $(this).closest(".alert").addClass("d-none");
+        });
+
         let table = new DataTable("#dataTable");
     </script>
     @endpush

@@ -1,6 +1,5 @@
 <x-layouts.admin-layout>
     <x-layouts.navbar />
-
     <x-breadcrumb :title="$title" />
 
     <div class="card basic-data-table">
@@ -14,7 +13,7 @@
                 <h5 class="card-title lh-1">Daftar {{ $title }}</h5>
             </div>
             <div class="d-flex flex-wrap align-items-center justify-content-end gap-2">
-                <a href="{{route('program.create')}}"
+                <a href="{{route('banner.create')}}"
                     class="btn btn-sm btn-primary-600 radius-8 d-inline-flex align-items-center gap-1">
                     <iconify-icon icon="pepicons-pencil:paper-plane" class="text-xl"></iconify-icon>
                     Tambah
@@ -26,42 +25,27 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama Program</th>
-                        <th scope="col">Kategori</th>
-                        <th scope="col">Kebutuhan Dana</th>
-                        <th scope="col">Terkumpul</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Link</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $row)
+                    @foreach ($banner as $row)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td><img src="{{asset('upload/banner/' . $row->img)}}" width="150"></td>
+                        <td>{{ $row->link }}</td>
                         <td>
-                            <div class="d-flex">
-                                <img src="{{asset('upload/' . $row->img)}}" width="135px" alt="gambar_program"
-                                    style="height: 90px;">
-                                <p class="p-3">{{ $row->judul }}
-                                </p>
-                            </div>
-                        </td>
-                        <td>{{ $row->Kategori->nama }}</td>
-                        <td>@rupiah($row->kebutuhan)</td>
-                        <td>@rupiah($row->terkumpul)</td>
-                        <td> <span
-                                class="badge badge-sm text-sm rounded-pill fw-semibold bg-success-600 px-20 py-9 radius-4 text-white">Aktif</span>
-                        </td>
-                        <td>
-                            <form action="{{route('program.destroy', $row->id)}}" method="POST">
-                                <a href="{{route('program.show', $row->id)}}"
+                            <form action="{{route('banner.destroy', $row->id)}}" method="POST">
+                                <!-- <a href="{{route('program.show', $row->id)}}"
                                     class="w-32-px h-32-px bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center">
                                     <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
                                 </a>
                                 <a href="{{route('program.edit', $row->id)}}"
                                     class="w-32-px h-32-px bg-success text-white text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
                                     <iconify-icon icon="lucide:edit"></iconify-icon>
-                                </a>
+                                </a> -->
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" style="position: relative; bottom:4px;"
@@ -85,24 +69,7 @@
             $(this).closest(".alert").addClass("d-none");
         });
 
-        let table = new DataTable("#dataTable", {
-            "autoWidth": false,
-            "columns": [{
-                "width": ""
-            }, {
-                "width": "490px"
-            }, {
-                "width": "125px"
-            }, {
-                "width": "225px"
-            }, {
-                "width": "225px"
-            }, {
-                "width": "125px"
-            }, {
-                "width": "140px"
-            }, ]
-        });
+        let table = new DataTable("#dataTable");
     </script>
     @endpush
 

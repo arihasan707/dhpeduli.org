@@ -39,7 +39,7 @@
 
     <!--swipper-->
     <div class="w-full relative pt-6">
-        <x-part.carousel />
+        <x-part.carousel :banner=$banner />
     </div>
 
     <x-part.program-carousel class="pt-3">
