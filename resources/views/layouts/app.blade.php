@@ -56,7 +56,7 @@
     @endisset
 
     <!-- Page Content -->
-    <main class="bg-white min-h-screen relative top-10">
+    <main class="bg-white min-h-screen relative top-10 pd-[10vh]">
         {{ $slot }}
     </main>
 
