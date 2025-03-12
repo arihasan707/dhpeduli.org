@@ -1,4 +1,4 @@
-<div class="text-xs">
+<div class="text-sm">
     <div class="pb-5 text-justify text-slate-800">
         <span>{{ $row->cta }}</span>
     </div>
