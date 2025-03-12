@@ -89,14 +89,13 @@ class BannerController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    { {
-            $data = Banner::find($id);
+    {
+        $data = Banner::find($id);
 
-            Storage::disk('upload-banner')->delete($data->img);
+        Storage::disk('upload-banner')->delete($data->img);
 
-            Banner::destroy($id);
+        Banner::destroy($id);
 
-            return redirect()->route('banner.index')->with('status', "Berhasil banner telah dihapus");
-        }
+        return redirect()->route('banner.index')->with('status', "Berhasil banner telah dihapus");
     }
 }

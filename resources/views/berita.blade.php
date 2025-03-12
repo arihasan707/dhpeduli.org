@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout class="pb-[18vh]">
     <x-slot name="header">
         <div class="pl-4 pb-2 pt-[10px] max-w-[120px] p-1">
             <a href="{{route('home.index')}}">

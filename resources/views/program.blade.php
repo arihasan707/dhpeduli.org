@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout class="pb-[10vh]">
     <x-slot name="header">
         <div class="pl-4 pb-2 pt-[10px] max-w-[120px] p-1">
             <a href="{{route('home.index')}}">
@@ -15,8 +15,8 @@
             </form>
         </div>
     </x-slot>
-    
-     <x-navbar />
+
+    <x-navbar />
 
     @if (request()->query('prog'))
     <div class="p-4">
@@ -27,12 +27,12 @@
     </div>
     @endif
 
-    <div class="pt-4">   
-     <x-part.program-list :$program>
-   </div>
-   
-    <div class=" pt-4">   
-    </x-part.program-list>
-     </div>
+    <div class="pt-4">
+        <x-part.program-list :$program>
+    </div>
+
+    <div class=" pt-4">
+        </x-part.program-list>
+    </div>
 
 </x-app-layout>

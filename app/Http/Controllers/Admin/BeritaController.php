@@ -100,6 +100,12 @@ class BeritaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = BeritaUmum::find($id);
+
+        Storage::disk('upload-berita')->delete($data->foto);
+
+        BeritaUmum::destroy($id);
+
+        return redirect()->route('berita.index')->with('status', "Berhasil berita telah dihapus");
     }
 }
