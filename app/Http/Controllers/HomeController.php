@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        $program = Program::orderBy('id', 'desc')->get();
+        $program = Program::orderBy('id', 'desc')->paginate(5);
         $banner = Banner::orderBy('created_at', 'desc')->get();
 
         return view('home', compact('kategori', 'program', 'banner'));
