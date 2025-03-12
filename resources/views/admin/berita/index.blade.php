@@ -27,7 +27,6 @@
                         <th scope="col">No</th>
                         <th scope="col">Foto</th>
                         <th scope="col">Judul</th>
-                        <th scope="col">Ajakan</th>
                         <th scope="col">Program Terkait</th>
                         <th scope="col">Aksi</th>
                     </tr>
@@ -38,7 +37,6 @@
                         <td>{{ $loop->iteration }}</td>
                         <td><img src="{{asset('upload/berita/' . $row->foto)}}" width="150"></td>
                         <td>{{ $row->judul }}</td>
-                        <td>{{ $row->cta }}</td>
                         <td>{{ $row->Program->judul }}</td>
                         <td>
                             <form action="{{route('berita.destroy', $row->id)}}" method="POST">
