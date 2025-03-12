@@ -14,7 +14,7 @@
             </span>
             <a href="{{route('berita' ,$berita->slug)}}"
                 class="font-semibold hover:text-sky-500 text-sky-700">{{ $berita->judul }} </a>
-            <div class="font-medium text-sm my-2">{!! $berita->isi !!}
+            <div class="font-medium text-sm my-2 text-justify">{!! $berita->isi !!}
             </div>
             <x-berita-card-program :row="$berita" />
         </div>

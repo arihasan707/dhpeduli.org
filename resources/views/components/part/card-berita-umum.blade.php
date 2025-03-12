@@ -15,7 +15,7 @@
             </span>
             <a href="{{route('berita' ,$row->slug)}}"
                 class="font-semibold hover:text-sky-500 text-sky-700">{{ $row->judul }} </a>
-            <div class="font-medium text-sm my-2">{!! Str::limit($row->isi ,230) !!}
+            <div class="font-medium text-sm my-2 text-justify">{!! Str::limit($row->isi ,230) !!}
             </div>
             <div class=" flex justify-end mt-5">
                 <a href="{{route('berita' ,$row->slug)}}"
