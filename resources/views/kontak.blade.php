@@ -33,7 +33,7 @@
                         <p class="text-gray-600 text-sm">Ajukan pertanyaan atau saranmu melalui email</p>
                     </div>
                 </a>
-                <a href="https://api.whatsapp.com/send?phone=6282122022947" target="_blank"
+                <a href="https://api.whatsapp.com/send?phone=6285215112369" target="_blank"
                     class="mb-8 p-4 rounded shadow-lg flex items-center border hover:bg-gray-100 w-full text-left">
                     <div class="mr-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
