@@ -48,7 +48,24 @@ Route::get('page/tentang', function () {
 
 //route kontak
 Route::get('page/kontak', function () {
-    return view('kontak');
+    $nomorWa = "+6285215112369";
+    $emoj = htmlentities("😇🙏");
+    $pesan =
+        "Assalammu'alaikum Warahmatullah 
+Wabarakatuh 
+              
+saya dengan Destya,
+Sebagai Admin Utama di lembaga Daarul
+Huffadz Peduli.
+              
+Silahkan ayah/bunda, untuk menyampaikan 
+pesannya. Insya Allah akan segera kami bantu 
+dan balas pesannya";
+
+    $encodedPesan = urlencode($pesan);
+    // dd($encodedPesan);
+    $whatsappLink = "https://wa.me/" . $nomorWa . "?text=" . $encodedPesan;
+    return view('kontak', compact('whatsappLink'));
 })->name('kontak');
 
 //route faq
