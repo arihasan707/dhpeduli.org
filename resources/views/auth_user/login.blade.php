@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout class="top-8">
     <x-slot name="header">
         <div class="max-w-[430px] bg-blue z-10 w-[100%] flex justify-between sticky top-0">
             <div class="p-4 text-white">

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout class="top-10">
 
     @push('styles')
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
