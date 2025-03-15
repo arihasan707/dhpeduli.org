@@ -10,4 +10,6 @@
         </div>
         @endforeach
     </div>
+    <!-- If we need pagination -->
 </div>
+<div class="swiper-pagination"></div>

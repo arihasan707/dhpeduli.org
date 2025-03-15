@@ -1,20 +1,28 @@
 <x-app-layout class="top-10">
 
     @push('styles')
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <style>
-        /* CSS Code */
-        .swiper-wrapper {
-            width: 100%;
-            height: max-content !important;
-            -webkit-transition-timing-function: linear !important;
-            transition-timing-function: linear !important;
-            position: relative;
-        }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-        .swiper-pagination-bullet {
-            background: #4f46e5;
-        }
+    <style>
+    /* CSS Code */
+    .swiper-wrapper {
+        width: 100%;
+        height: max-content !important;
+        -webkit-transition-timing-function: linear !important;
+        transition-timing-function: linear !important;
+        position: relative;
+    }
+
+    .swiper-pagination-bullet {
+        background: #4f46e5;
+    }
+
+    .swiper-horizontal>.swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal,
+    .swiper-pagination-custom,
+    .swiper-pagination-fraction {
+        bottom: -25px;
+    }
     </style>
     @endpush
 
@@ -42,7 +50,7 @@
         <x-part.carousel :banner=$banner />
     </div>
 
-    <x-part.program-carousel class="pt-3">
+    <x-part.program-carousel class=" pt-10">
         <x-slot:title>
             <div>Bangun Pusat Peradaban</div>
         </x-slot:title>
@@ -109,34 +117,34 @@
 
     @push('scripts')
     <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            cssMode: true,
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-                el: ".swiper-pagination",
-            },
-            mousewheel: true,
-            keyboard: true,
-        });
+    var swiper = new Swiper(".mySwiper", {
+        cssMode: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        mousewheel: true,
+        keyboard: true,
+    });
     </script>
 
     <script>
-        var swiper = new Swiper(".default-carousel", {
-            loop: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            autoplay: {
-                delay: 2100,
-                disableOnInteraction: false,
-            },
-        });
+    var swiper = new Swiper(".default-carousel", {
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        autoplay: {
+            delay: 2100,
+            disableOnInteraction: false,
+        },
+    });
     </script>
 
     @endpush
