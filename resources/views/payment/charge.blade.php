@@ -20,7 +20,8 @@
     </x-slot>
 
     <div class="p-4 text-gray-600">
-        <p class="mb-4 text-center font-bold pt-3">Silahkan klik link dibawah ini jika pembayaran <br> tidak terbuka secara
+        <p class="mb-4 text-center font-bold pt-3">Silahkan klik link dibawah ini jika pembayaran <br> tidak terbuka
+            secara
             otomatis</p>
         <button id="pay"
             class="w-full text-sm py-2 px-4 border hover:bg-sky-100 border-blue text-blue font-bold rounded-md flex items-center justify-center"><svg
@@ -56,7 +57,7 @@
                     siapkan juga bukti transfernya ya</p>
             </div>
         </div><a
-            href="https://api.whatsapp.com/send/?phone=6285217119734&amp;text=_Assalaamu%27alaikum_+kak%2C%0A++++++++++++++++++++%0ASaya+ada+kendala+%2Aproses+donasi%2A%0A++++++++++++++++++++%0A%60%60%60Nomor+invoice%3A+{{$donasi->kode}}%0ATotal%3A+@rupiah($donasi->amount)%60%60%60%0A++++++++++++++++++++%0AMohon+untuk+bantu+dicek+ya+kak..&amp;type=phone_number&amp;app_absent=0"
+            href="https://api.whatsapp.com/send/?phone=6285215112369&amp;text=_Assalaamu%27alaikum_+kak%2C%0A++++++++++++++++++++%0ASaya+ada+kendala+%2Aproses+donasi%2A%0A++++++++++++++++++++%0A%60%60%60Nomor+invoice%3A+{{$donasi->kode}}%0ATotal%3A+@rupiah($donasi->amount)%60%60%60%0A++++++++++++++++++++%0AMohon+untuk+bantu+dicek+ya+kak..&amp;type=phone_number&amp;app_absent=0"
             target="_blank" rel="noreferrer"
             class="flex items-center border py-3 px-4 border-gray-300 rounded text-gray-600"><svg
                 xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="none"
@@ -99,44 +100,23 @@
 
     @push('scripts')
 
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
 
     <script>
-    let pay = $('#pay');
+        let pay = $('#pay');
 
-    function ajaxGetToken(callback) {
-        let snapToken = '{{$donasi->snap}}';
-        // Request get token to your server & save result to snapToken variable
+        function ajaxGetToken(callback) {
+            let snapToken = '{{$donasi->snap}}';
+            // Request get token to your server & save result to snapToken variable
 
-        if (snapToken) {
-            callback(null, snapToken);
-        } else {
-            callback(new Error('Failed to fetch snap token'), null);
-        }
-    }
-    
-    ajaxGetToken(function(error, snapToken) {
-            if (error) {
-                snap.hide();
+            if (snapToken) {
+                callback(null, snapToken);
             } else {
-                window.snap.pay(snapToken, {
-                    onSuccess: function(result) {
-                        let slug = $('#slug').data('slug')
-                        let kode = $('#kode').data('kode')
-                        let url = "{{route('success',[':kode',':slug'])}}"
-                        url = url.replace(':kode', kode)
-                        url = url.replace(':slug', slug)
-                        /* You may add your own implementation here */
-                        window.location.href = url
-                    },
-                })
-
+                callback(new Error('Failed to fetch snap token'), null);
             }
-        });
-    
-    
-    pay.on('click', function() {
-        snap.show();
+        }
+
         ajaxGetToken(function(error, snapToken) {
             if (error) {
                 snap.hide();
@@ -155,9 +135,29 @@
 
             }
         });
-    })
-    
-    
+
+
+        pay.on('click', function() {
+            snap.show();
+            ajaxGetToken(function(error, snapToken) {
+                if (error) {
+                    snap.hide();
+                } else {
+                    window.snap.pay(snapToken, {
+                        onSuccess: function(result) {
+                            let slug = $('#slug').data('slug')
+                            let kode = $('#kode').data('kode')
+                            let url = "{{route('success',[':kode',':slug'])}}"
+                            url = url.replace(':kode', kode)
+                            url = url.replace(':slug', slug)
+                            /* You may add your own implementation here */
+                            window.location.href = url
+                        },
+                    })
+
+                }
+            });
+        })
     </script>
     @endpush
 

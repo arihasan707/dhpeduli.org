@@ -17,7 +17,7 @@
         </p>
         <a class="block w-full py-2 px-8 my-2 text-sm border-2 border-blue text-blue rounded-md font-semibold"
             href="{{route('program')}}">Cari program kebaikan lainnya</a>
-        <a href="https://api.whatsapp.com/send?phone=6282122022947&amp;text=Assalaamualaikum%20admin%20...%0A%0A%0ASumber%20info%3A%20https://www.dhpeduli.org"
+        <a href="https://api.whatsapp.com/send?phone=6285215112369&amp;text=Assalaamualaikum%20admin%20...%0A%0A%0ASumber%20info%3A%20https://www.dhpeduli.org"
             rel="noreferrer" target="_blank"
             class="block w-full py-2 px-8 my-2 text-sm border-2 border-green-500 text-green-500 rounded-md font-semibold">Hubungi
             Admin Dhpeduli
