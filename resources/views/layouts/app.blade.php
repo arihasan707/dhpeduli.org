@@ -56,7 +56,7 @@
     @endisset
 
     <!-- Page Content -->
-    <main {{ $attributes->merge(['class' => 'bg-white min-h-screen relative']) }}>
+    <main {{ $attributes->merge(['class' => 'bg-white min-h-screen relative top-10']) }}>
         {{ $slot }}
     </main>
 
