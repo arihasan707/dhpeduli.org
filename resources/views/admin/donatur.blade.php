@@ -25,6 +25,7 @@
                         <th scope="col">Dari</th>
                         <th scope="col">Jumlah</th>
                         <th scope="col">Status</th>
+                        <th scope="col">No. Telp</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -59,6 +60,7 @@
                             @break
                             @endswitch
                         </td>
+                        <td>{{ $row->telp }}</td>
                         <td>
                             <form action="{{route('donasi.destroy', $row->id)}}" method="POST">
                                 @csrf

@@ -35,7 +35,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td><img src="{{asset('upload/banner/' . $row->img)}}" width="150"></td>
-                        <td>{{ $row->link }}</td>
+                        <td>{{ Str::of($row->link)->limit(60) }}</td>
                         <td>
                             <form action="{{route('banner.destroy', $row->id)}}" method="POST">
                                 <!-- <a href="{{route('program.show', $row->id)}}"
@@ -47,6 +47,10 @@
                                     <iconify-icon icon="lucide:edit"></iconify-icon>
                                 </a> -->
                                 @csrf
+                                <a href="{{route('banner.edit', $row->id)}}"
+                                    class="w-32-px h-32-px bg-success text-white text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                                    <iconify-icon icon="lucide:edit"></iconify-icon>
+                                </a>
                                 @method('DELETE')
                                 <button type="submit" style="position: relative; bottom:4px;"
                                     class="w-32-px h-32-px bg-danger text-white text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">

@@ -88,7 +88,13 @@ class ProgramController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        $title = 'Show Program';
+        $dataKategori = Kategori::all();
+        $dataProgram = Program::find($id);
+        return view('admin.program.show', compact('dataProgram', 'title', 'dataKategori'));
+    }
 
     /**
      * Show the form for editing the specified resource.
