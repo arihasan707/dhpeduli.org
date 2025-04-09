@@ -106,7 +106,9 @@
                 "width": ""
             }, {
                 "width": ""
-            }, ]
+            }, {
+                "width": ""
+            }]
         });
     </script>
     @endpush
