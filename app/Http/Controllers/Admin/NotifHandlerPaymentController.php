@@ -49,18 +49,32 @@ class NotifHandlerPaymentController extends Controller
         $transaction_status = $payload['transaction_status'];
 
         if ($transaction_status == 'settlement') {
-            $status = 'settlement';
+            $order->status = 'settlement';
+            $order->save();
             $program->terkumpul = $program->terkumpul + $order->amount;
             $program->save();
-        } else if ($transaction_status == 'expire') {
-            $status = 'expire';
+
+            return response()->json([
+                'message' => 'transaksi settlement'
+            ], 200);
         }
 
-        $order->status = $status;
-        $order->save();
+        if ($transaction_status == 'expire') {
+            $order->status = 'expire';
+            $order->save();
 
-        return response()->json([
-            'message' => 'success'
-        ], 200);
+            return response()->json([
+                'message' => 'transaksi expire'
+            ], 407);
+        }
+
+        if ($transaction_status == 'pending') {
+            $order->status = 'pendingh';
+            $order->save();
+
+            return response()->json([
+                'message' => 'transaksi pending'
+            ], 201);
+        }
     }
 }
