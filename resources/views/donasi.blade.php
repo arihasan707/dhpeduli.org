@@ -245,7 +245,7 @@
 
         $(document).ready(function() {
 
-            let amount = null;
+            // let amount = null;
             let tes = $('.nominal-label');
             var b;
             var nominal;
@@ -266,9 +266,12 @@
 
             function validWithNominal() {
                 $('.required input').on('keyup', function() {
-                    let amount = $("input[name='amount']").val()
-                    let k = amount.replaceAll('.', '')
+                    // let amount = $("input[name='amount']").val()
+                    let k = nominal.replaceAll('.', '')
                     let kosong = true
+
+                    console.log(k);
+
 
                     $('.required input').each(function() {
                         if (k < 10000 || $("input[name='name']").val() == '' || $(
@@ -280,7 +283,7 @@
                     if (kosong) {
                         $('#submit').removeClass('opacity-30 cursor-not-allowed')
                         $('#submit').prop('disabled', false)
-                        b = amount;
+                        // b = amount;
                     } else {
                         $('#submit').addClass('opacity-30 cursor-not-allowed')
                         $('#submit').prop('disabled', true)
@@ -314,6 +317,8 @@
                 let k = $(this).find('.nominal-label').text();
                 let tes = k.replace('Rp', '');
 
+                nominal = tes;
+
                 $('.nominal').addClass('hidden');
                 $('.konfirm').removeClass('hidden');
                 $('.konfirm').find('.donasi input').val(tes)
@@ -327,15 +332,27 @@
                 $("input[name='amount']").on('keyup', function() {
 
                     nominal = $(this).val()
-
+                    let kosong = true;
                     let k = nominal.replaceAll('.', '');
 
-                    if (k < 10000 || k == '') {
-                        $('.donasi').removeClass('mb-2')
-                        $('.alert').show()
-                    } else {
+                    console.log(k);
+
+                    $('.required input').each(function() {
+                        if (k < 10000)
+                            kosong = false
+                    })
+
+                    if (kosong) {
+                        $('#submit').removeClass('opacity-30 cursor-not-allowed')
+                        $('#submit').prop('disabled', false)
                         $('.donasi').addClass('mb-2')
                         $('.alert').hide()
+                    } else {
+                        $('#submit').addClass('opacity-30 cursor-not-allowed')
+                        $('#submit').prop('disabled', true)
+                        $('.donasi').removeClass('mb-2')
+                        $('.alert').show()
+
                     }
 
                 });
@@ -364,7 +381,8 @@
 
             $('.nominallainnya input').on('change', function() {
                 l = $(this).val()
-
+                nominal = l
+                bb = l
                 var angka = l.replaceAll('.', '');
 
                 if (angka < 10000 || l == '') {
@@ -416,15 +434,30 @@
                         validWithNominal()
 
                         $("input[name='amount']").on('keyup', function() {
-                            bb = $(this).val()
-                            nominal = bb.replaceAll('.', '');
 
-                            if (nominal < 10000 || nominal == '') {
-                                $('.donasi').removeClass('mb-2')
-                                $('.alert').show()
-                            } else {
+                            nominal = $(this).val()
+                            let kosong = true;
+                            let k = nominal.replaceAll('.', '');
+
+                            bb = nominal
+                            l = nominal
+
+                            $('.required input').each(function() {
+                                if (k < 10000)
+                                    kosong = false
+                            })
+
+                            if (kosong) {
+                                $('#submit').removeClass('opacity-30 cursor-not-allowed')
+                                $('#submit').prop('disabled', false)
                                 $('.donasi').addClass('mb-2')
                                 $('.alert').hide()
+                            } else {
+                                $('#submit').addClass('opacity-30 cursor-not-allowed')
+                                $('#submit').prop('disabled', true)
+                                $('.donasi').removeClass('mb-2')
+                                $('.alert').show()
+
                             }
                         })
 
@@ -452,22 +485,22 @@
 
 
             //notif nominal donasi tidak boleh kosong
-            $('#submit').on('click', function() {
-                if (amount == "" || amount == null) {
-                    $(this).attr("data-swal-toast-template", "#my-template")
-                    Swal.mixin({
-                        toast: true
-                    }).bindClickHandler("data-swal-toast-template");
-                } else {
-                    $(this).removeAttr("data-swal-toast-template")
-                }
-            })
+            // $('#submit').on('click', function() {
+            //     if (amount == "" || amount == null) {
+            //         $(this).attr("data-swal-toast-template", "#my-template")
+            //         Swal.mixin({
+            //             toast: true
+            //         }).bindClickHandler("data-swal-toast-template");
+            //     } else {
+            //         $(this).removeAttr("data-swal-toast-template")
+            //     }
+            // })
 
-            $("input[name='amount']").on('keyup', function() {
-                amount = $(this).val()
-            })
+            // $("input[name='amount']").on('keyup', function() {
+            //     amount = $(this).val()
+            // })
 
-            console.log(amount);
+            // console.log(amount);
 
 
 
