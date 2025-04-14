@@ -469,7 +469,7 @@
                                 let angka = nominal.replaceAll('.', '');
 
                                 beforePayment(bb)
-                                payment(nominal, anonim, program_id)
+                                payment(angka, anonim, program_id)
                             } else {
 
                                 let angka = l.replaceAll('.', '');
