@@ -270,7 +270,7 @@
                     let k = nominal.replaceAll('.', '')
                     let kosong = true
 
-                    console.log(k);
+                    // console.log(k);
 
 
                     $('.required input').each(function() {
@@ -335,7 +335,7 @@
                     let kosong = true;
                     let k = nominal.replaceAll('.', '');
 
-                    console.log(k);
+                    // console.log(k);
 
                     $('.required input').each(function() {
                         if (k < 10000)
@@ -466,12 +466,14 @@
 
                             if (nominal != undefined) {
                                 $('.konfirm').find('.donasi input').val(bb)
+                                let angka = nominal.replaceAll('.', '');
 
                                 beforePayment(bb)
                                 payment(nominal, anonim, program_id)
                             } else {
 
                                 let angka = l.replaceAll('.', '');
+                                // console.log(angka);
 
                                 $('.konfirm').find('.donasi input').val(l)
 
