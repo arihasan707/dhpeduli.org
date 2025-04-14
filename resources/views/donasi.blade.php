@@ -245,7 +245,7 @@
 
         $(document).ready(function() {
 
-            // let amount = null;
+            let amount = null;
             let tes = $('.nominal-label');
             var b;
             var nominal;
@@ -303,7 +303,7 @@
             $('.nominal button').on('click', function() {
                 let user = $('#user').data('id');
                 // console.log(user);
-
+                amount = "tidak null";
                 if (user != undefined) {
                     b = $(this).text();
                     b = b.replace('Rp', '')
@@ -487,22 +487,21 @@
 
 
             //notif nominal donasi tidak boleh kosong
-            // $('#submit').on('click', function() {
-            //     if (amount == "" || amount == null) {
-            //         $(this).attr("data-swal-toast-template", "#my-template")
-            //         Swal.mixin({
-            //             toast: true
-            //         }).bindClickHandler("data-swal-toast-template");
-            //     } else {
-            //         $(this).removeAttr("data-swal-toast-template")
-            //     }
-            // })
+            $('#submit').on('click', function() {
+                if (amount == "" || amount == null) {
+                    $(this).attr("data-swal-toast-template", "#my-template")
+                    Swal.mixin({
+                        toast: true
+                    }).bindClickHandler("data-swal-toast-template");
+                } else {
+                    $(this).removeAttr("data-swal-toast-template")
+                }
+            })
 
-            // $("input[name='amount']").on('keyup', function() {
-            //     amount = $(this).val()
-            // })
+            $("input[name='amount']").on('keyup', function() {
+                amount = $(this).val()
+            })
 
-            // console.log(amount);
 
 
 
