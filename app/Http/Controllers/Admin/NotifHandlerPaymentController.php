@@ -65,7 +65,7 @@ class NotifHandlerPaymentController extends Controller
 
             return response()->json([
                 'message' => 'transaksi expire'
-            ], 407);
+            ], 202);
         }
 
         if ($transaction_status == 'pending') {
