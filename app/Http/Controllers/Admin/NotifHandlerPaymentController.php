@@ -69,7 +69,7 @@ class NotifHandlerPaymentController extends Controller
         }
 
         if ($transaction_status == 'pending') {
-            $order->status = 'pendingh';
+            $order->status = 'pending';
             $order->save();
 
             return response()->json([
