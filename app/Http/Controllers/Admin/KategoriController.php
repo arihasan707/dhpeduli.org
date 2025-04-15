@@ -97,9 +97,7 @@ class KategoriController extends Controller
             $file_path = public_path() . '/upload/';
             if ($kategori->img != '' && $kategori->img != NULL) {
                 $img_old = $file_path . $kategori->img;
-                if (!isEmpty()) {
-                    unlink($img_old);
-                }
+                unlink($img_old);
             }
 
             $file = $request->img;
