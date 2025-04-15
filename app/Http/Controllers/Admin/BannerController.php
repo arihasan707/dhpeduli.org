@@ -9,6 +9,8 @@ use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 
+use function PHPUnit\Framework\isEmpty;
+
 class BannerController extends Controller
 {
     protected $manager;
@@ -84,7 +86,35 @@ class BannerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $banner = Banner::find($id);
+
+        if ($request->hasFile('img')) {
+            $file_path = public_path() . '/upload/banner/';
+            if ($banner->img != '' && $banner->img != NULL) {
+                $img_old = $file_path . $banner->img;
+                unlink($img_old);
+            }
+
+            $file = $request->img;
+            //resize gambar
+            $image = $this->manager->read($file)->cover(600, 450);
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            $thumbImage =  $image->encodeByExtension($file->getClientOriginalExtension(), quality: 90);
+
+            Storage::disk('upload-banner')->put($imageName, $thumbImage);
+
+            $banner->update([
+                'link' => $request->link,
+                'img' => $imageName,
+            ]);
+        } else {
+
+            $banner->update([
+                'link' => $request->link,
+            ]);
+        }
+
+        return redirect()->route('banner.index')->with('status', 'Berhasil banner telah diubah');
     }
 
     /**

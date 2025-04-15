@@ -5,8 +5,9 @@
 
     <div class="row gy-4">
         <div class="col-md-12">
-            <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('banner.update',$data->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="d-flex align-items-end">
