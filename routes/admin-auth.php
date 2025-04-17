@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\Auth\LoginAdminController;
 use App\Http\Controllers\Admin\BeritaPenyaluranController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
+use App\Http\Controllers\Admin\Exports\DonasiExport;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
@@ -76,6 +77,8 @@ Route::prefix('admin')->group(function () {
             ->name('password.confirm');
 
         Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+
+        Route::get('export-donasi', [DonasiExport::class, 'index'])->name('donasi.export');
 
         Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 

@@ -13,6 +13,13 @@
             <div class="d-flex align-items-end">
                 <h5 class="card-title lh-1">Daftar {{ $title }}</h5>
             </div>
+            <div class="d-flex flex-wrap align-items-center justify-content-end gap-2">
+                <a href="" data-bs-toggle="modal" data-bs-target="#tambah"
+                    class="btn btn-sm btn-success radius-8 d-inline-flex align-items-center gap-1">
+                    <iconify-icon icon="ic:baseline-download" class="text-xl"></iconify-icon>
+                    Export to Excel
+                </a>
+            </div>
         </div>
         <div class="card-body overflow-x-auto">
             <table class="table bordered-table" id="dataTable" data-page-length='10'>
@@ -78,6 +85,37 @@
             </table>
         </div>
     </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class=" fw-semibold mb-0" id="exampleModalLabel">Filter Tanggal</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('donasi.export')}}" method="GET">
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="exampleInputEmail1" class="form-label">Start Date</label>
+                                <input class="form-control" type="date" name="start_date">
+                            </div>
+                            <div class="col-6">
+                                <label for="exampleInputEmail1" class="form-label">End Date</label>
+                                <input class="form-control" type="date" name="end_date">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-success">Export</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     @push('scripts')
