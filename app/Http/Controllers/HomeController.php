@@ -46,8 +46,7 @@ class HomeController extends Controller
             }
         }
 
-
-        if ($request->query()) {
+        if ($request->query('slug')) {
             switch ($request->query('filter')) {
                 case 'latest':
                     $donatur = Donasi::where('program_id', $program->id)->where('status', '=', 'settlement')->orderBy('id', 'desc')->get();
