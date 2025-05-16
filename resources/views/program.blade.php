@@ -35,14 +35,4 @@
         </x-part.program-list>
     </div>
 
-    @php
-    $messsage = "Assalamualikum ayah/bunda Ari\n\n";
-    $messsage .= "Terima kasih telah berdonasi di program ini\n";
-    $messsage .= "Pembayaran anda pending dengan nomor invoive DHP-0988888888,\n";
-    $messsage .= "Segera lakukan pembayaran di link berikut:
-    https://dhpeduli.org/detail/qurban-istimewa-bersama-200-santri-penghafal-al-quran";
-    echo $messsage;
-    @endphp
-
-
 </x-app-layout>
