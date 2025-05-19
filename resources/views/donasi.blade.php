@@ -487,12 +487,37 @@
 
 
             //notif nominal donasi tidak boleh kosong
+
+            function disableBtn() {
+                $("input[name='amount']").prop('disabled', true);
+                $("#submit").prop('disabled', true);
+                $('.nominal').children('button').prop('disabled', true);
+
+            }
+
+            function enableBtn() {
+                $("input[name='amount']").prop('disabled', false);
+                $("#submit").prop('disabled', false);
+                $('.nominal').children('button').prop('disabled', false);
+            }
+
             $('#submit').on('click', function() {
                 if (amount == "" || amount == null) {
                     $(this).attr("data-swal-toast-template", "#my-template")
                     Swal.mixin({
-                        toast: true
+                        toast: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        didOpen: () => {
+                            // Disable semua tombol dengan class tertentu
+                            disableBtn();
+                        },
+                        didClose: () => {
+                            // Aktifkan kembali tombol setelah swal ditutup
+                            enableBtn();
+                        }
                     }).bindClickHandler("data-swal-toast-template");
+
                 } else {
                     $(this).removeAttr("data-swal-toast-template")
                 }
