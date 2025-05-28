@@ -177,6 +177,36 @@
             </div>
         </div>
         <!-- Latest Performance End -->
+        <div class="col-lg-12">
+            <div class="card basic-data-table">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="d-flex align-items-end">
+                        <h5 class="card-title lh-1">Visitor via Meta Ads</h5>
+                    </div>
+                </div>
+                <div class="card-body overflow-x-auto">
+                    <table class="table bordered-table" id="dataTable" data-page-length='10'>
+                        <thead>
+                            <tr>
+                                <th scope="col">Url</th>
+                                <th scope="col">Priode</th>
+                                <th scope="col">Total Kunjungan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($visitors as $row)
+                            <tr>
+                                <td>{{ $row->url }}</td>
+                                <td>{{ $row->utm_campaign }}</td>
+                                <td>{{ $row->total }} Orang</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </x-layouts.admin-layout>
