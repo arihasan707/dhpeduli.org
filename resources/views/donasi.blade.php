@@ -3,36 +3,36 @@
     @push('styles')
 
     <style>
-    .checkbox {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        width: 44px;
-        height: 24px;
-        background-color: #e3e3e3;
-        border: #e1e1e1;
-        border-radius: 4em;
-        position: relative;
-        transition: .3s ease;
-    }
+        .checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 44px;
+            height: 24px;
+            background-color: #e3e3e3;
+            border: #e1e1e1;
+            border-radius: 4em;
+            position: relative;
+            transition: .3s ease;
+        }
 
-    .checkbox::before {
-        content: "";
-        width: 20px;
-        height: 20px;
-        background-color: #fff;
-        border-radius: 50%;
-        display: block;
-        position: absolute;
-        left: 2px;
-        top: 2px;
-        transition: .3s ease;
-    }
+        .checkbox::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            transition: .3s ease;
+        }
 
-    #snap-container {
-        width: 430px;
-        height: 100vh;
-    }
+        #snap-container {
+            width: 430px;
+            height: 100vh;
+        }
     </style>
 
     @endpush
@@ -178,11 +178,11 @@
                     placeholder="Nama Lengkap *"
                     class="text-sm w-full border rounded border-gray-300 p-2 mb-2 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
-                <input type="text" name="user_telp_kontak" data-nofb="true" autocomplete="off"
+                <input type="tel" name="user_telp_kontak" data-nofb="true" autocomplete="off"
                     placeholder="Nomor Telfon *"
                     class="text-sm w-full border rounded p-2 mb-2 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
-                <input type="email" name="user_mail_lengkap" data-nofb="true" autocomplete="off"
+                <input type="text" name="user_mail_lengkap" data-nofb="true" autocomplete="off"
                     placeholder="Alamat Email "
                     class="text-sm w-full border rounded p-2 mb-3 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
@@ -192,10 +192,10 @@
                 <input type="text" name="user_nama_lengkap" placeholder="Nama Lengkap *"
                     class="text-sm w-full border rounded border-gray-300 p-2 mb-2 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="{{ Auth::user()->name }}" hidden>
-                <input type="text" name="user_telp_kontak" placeholder="Nomor Telfon *"
+                <input type="tel" name="user_telp_kontak" placeholder="Nomor Telfon *"
                     class="text-sm w-full border rounded p-2 mb-2 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="{{ Auth::user()->no_wa }}" hidden>
-                <input type="email" name="user_mail_lengkap" placeholder="Alamat Email "
+                <input type="text" name="user_mail_lengkap" placeholder="Alamat Email "
                     class="text-sm w-full border rounded p-2 mb-3 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="{{ Auth::user()->email }}" hidden>
                 <div class="my-3">
@@ -244,352 +244,352 @@
     <script src="{{asset('backend/js/jquery.mask.min.js')}}"></script>
 
     <script>
-    // Format mata uang.
+        // Format mata uang.
 
-    $(document).ready(function() {
+        $(document).ready(function() {
 
-        let amount = null;
-        let tes = $('.nominal-label');
-        var b;
-        var nominal;
-        var l;
-        var bb;
-        let anonim = 0;
-        let program_id = $('.konfirm').data('id')
+            let amount = null;
+            let tes = $('.nominal-label');
+            var b;
+            var nominal;
+            var l;
+            var bb;
+            let anonim = 0;
+            let program_id = $('.konfirm').data('id')
 
-        function IsEmail(email) {
-            const regex =
-                /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            if (!regex.test(email) && email) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function validWithNominal() {
-            autoFillText();
-            $('.required input').on('keyup', function() {
-                // let amount = $("input[name='amount']").val()
-                let k = nominal.replaceAll('.', '')
-                let kosong = true
-
-                // console.log(k);
-
-
-                $('.required input').each(function() {
-                    if (k < 10000 || $("input[name='user_nama_lengkap']").val() == '' || $(
-                            "input[name='user_telp_kontak']").val() == '' || $(
-                            "input[name='user_telp_kontak']").val()
-                        .length < 8 || IsEmail($("input[name='user_mail_lengkap']").val()) ==
-                        false)
-                        kosong = false
-                })
-
-                if (kosong) {
-                    $('#submit').removeClass('opacity-30 cursor-not-allowed')
-                    $('#submit').prop('disabled', false)
-                    // b = amount;
+            function IsEmail(email) {
+                const regex =
+                    /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if (!regex.test(email) && email) {
+                    return false;
                 } else {
-                    $('#submit').addClass('opacity-30 cursor-not-allowed')
-                    $('#submit').prop('disabled', true)
-
+                    return true;
                 }
-            })
-        }
-
-        $("input[name='user_telp_kontak']").on('keyup', function() {
-            this.value = this.value.replace(/[^0-9\.]/g, "")
-        })
-
-        $('.rupiah').mask('000.000.000.000.000', {
-            reverse: true
-        });
-
-        $('.nominal button').on('click', function() {
-            let user = $('#user').data('id');
-            // console.log(user);
-            amount = "tidak null";
-            if (user != undefined) {
-                b = $(this).text();
-                b = b.replace('Rp', '')
-                b = $.trim(b)
-                $('#submit').removeClass('cursor-not-allowed opacity-30');
-                $('#submit').prop('disabled', false);
-            } else {
-                $('#submit').addClass('cursor-not-allowed opacity-30');
-                $('#submit').prop('disabled', true);
             }
-            let k = $(this).find('.nominal-label').text();
-            let tes = k.replace('Rp', '');
 
-            nominal = tes;
+            function validWithNominal() {
+                autoFillText();
+                $('.required input').on('keyup', function() {
+                    // let amount = $("input[name='amount']").val()
+                    let k = nominal.replaceAll('.', '')
+                    let kosong = true
 
-            $('.nominal').addClass('hidden');
-            $('.konfirm').removeClass('hidden');
-            $('.konfirm').find('.donasi input').val(tes)
+                    // console.log(k);
 
-            $("input[name='anonimus']").on('click', function() {
-                anonim = $(this).prop('checked') == true ? 1 : 0
+
+                    $('.required input').each(function() {
+                        if (k < 10000 || $("input[name='user_nama_lengkap']").val() == '' || $(
+                                "input[name='user_telp_kontak']").val() == '' || $(
+                                "input[name='user_telp_kontak']").val()
+                            .length < 8 || IsEmail($("input[name='user_mail_lengkap']").val()) ==
+                            false)
+                            kosong = false
+                    })
+
+                    if (kosong) {
+                        $('#submit').removeClass('opacity-30 cursor-not-allowed')
+                        $('#submit').prop('disabled', false)
+                        // b = amount;
+                    } else {
+                        $('#submit').addClass('opacity-30 cursor-not-allowed')
+                        $('#submit').prop('disabled', true)
+
+                    }
+                })
+            }
+
+            $("input[name='user_telp_kontak']").on('keyup', function() {
+                this.value = this.value.replace(/[^0-9\.]/g, "")
             })
 
-            validWithNominal()
-
-            $("input[name='amount']").on('keyup', function() {
-
-                nominal = $(this).val()
-                let kosong = true;
-                let k = nominal.replaceAll('.', '');
-
-                // console.log(k);
-
-                $('.required input').each(function() {
-                    if (k < 10000)
-                        kosong = false
-                })
-
-                if (kosong) {
-                    $('#submit').removeClass('opacity-30 cursor-not-allowed')
-                    $('#submit').prop('disabled', false)
-                    $('.donasi').addClass('mb-2')
-                    $('.alert').hide()
-                } else {
-                    $('#submit').addClass('opacity-30 cursor-not-allowed')
-                    $('#submit').prop('disabled', true)
-                    $('.donasi').removeClass('mb-2')
-                    $('.alert').show()
-
-                }
-
+            $('.rupiah').mask('000.000.000.000.000', {
+                reverse: true
             });
 
-            $('#submit').on('click', function() {
-
-                // console.log(nominal);
-                // console.log(tes);
-
-                if (nominal != undefined) {
-                    let angka = nominal.replaceAll('.', '');
-
-                    $('.konfirm').find('.donasi input').val(nominal)
-                    beforePayment(nominal)
-                    payment(angka, anonim, program_id)
+            $('.nominal button').on('click', function() {
+                let user = $('#user').data('id');
+                // console.log(user);
+                amount = "tidak null";
+                if (user != undefined) {
+                    b = $(this).text();
+                    b = b.replace('Rp', '')
+                    b = $.trim(b)
+                    $('#submit').removeClass('cursor-not-allowed opacity-30');
+                    $('#submit').prop('disabled', false);
                 } else {
-                    let angka = tes.replaceAll('.', '');
-
-                    $('.konfirm').find('.donasi input').val(tes)
-                    beforePayment(tes)
-                    payment(angka, anonim, program_id)
+                    $('#submit').addClass('cursor-not-allowed opacity-30');
+                    $('#submit').prop('disabled', true);
                 }
-            })
+                let k = $(this).find('.nominal-label').text();
+                let tes = k.replace('Rp', '');
 
-        })
+                nominal = tes;
 
-        $('.nominallainnya input').on('change', function() {
-            l = $(this).val()
-            nominal = l
-            bb = l
-            var angka = l.replaceAll('.', '');
+                $('.nominal').addClass('hidden');
+                $('.konfirm').removeClass('hidden');
+                $('.konfirm').find('.donasi input').val(tes)
 
-            if (angka < 10000 || l == '') {
-                $('.alert').show()
-            } else {
-                $('#submit').removeClass('cursor-not-allowed opacity-30');
-                $('#submit').prop('disabled', false);
-                $('.alert').hide()
+                $("input[name='anonimus']").on('click', function() {
+                    anonim = $(this).prop('checked') == true ? 1 : 0
+                })
+
+                validWithNominal()
+
+                $("input[name='amount']").on('keyup', function() {
+
+                    nominal = $(this).val()
+                    let kosong = true;
+                    let k = nominal.replaceAll('.', '');
+
+                    // console.log(k);
+
+                    $('.required input').each(function() {
+                        if (k < 10000)
+                            kosong = false
+                    })
+
+                    if (kosong) {
+                        $('#submit').removeClass('opacity-30 cursor-not-allowed')
+                        $('#submit').prop('disabled', false)
+                        $('.donasi').addClass('mb-2')
+                        $('.alert').hide()
+                    } else {
+                        $('#submit').addClass('opacity-30 cursor-not-allowed')
+                        $('#submit').prop('disabled', true)
+                        $('.donasi').removeClass('mb-2')
+                        $('.alert').show()
+
+                    }
+
+                });
 
                 $('#submit').on('click', function() {
 
-                    let user = $('#user').data('id')
+                    // console.log(nominal);
+                    // console.log(tes);
 
-                    if (user != undefined) {
+                    if (nominal != undefined) {
+                        let angka = nominal.replaceAll('.', '');
 
-                        let kosong = true
-
-                        $('.required input').each(function() {
-                            if (angka < 10000 || $("input[name='user_nama_lengkap']")
-                                .val() == '' ||
-                                $(
-                                    "input[name='user_telp_kontak']").val() == '' || $(
-                                    "input[name='user_telp_kontak']").val()
-                                .length < 8 || IsEmail($(
-                                        "input[name='user_mail_lengkap']")
-                                    .val()) == false)
-                                kosong = false
-                        })
-
-                        if (kosong) {
-                            $('#submit').removeClass('opacity-30 cursor-not-allowed')
-                            $('#submit').prop('disabled', false)
-                        } else {
-                            $('#submit').addClass('opacity-30 cursor-not-allowed')
-                            $('#submit').prop('disabled', true)
-                        }
-
+                        $('.konfirm').find('.donasi input').val(nominal)
+                        beforePayment(nominal)
+                        payment(angka, anonim, program_id)
                     } else {
-                        $('#submit').addClass('cursor-not-allowed opacity-30');
-                        $('#submit').prop('disabled', true);
+                        let angka = tes.replaceAll('.', '');
+
+                        $('.konfirm').find('.donasi input').val(tes)
+                        beforePayment(tes)
+                        payment(angka, anonim, program_id)
                     }
+                })
 
-                    $('.nominal').addClass('hidden');
-                    $('.konfirm').removeClass('hidden');
-                    $('.konfirm').find('.donasi input').val(l)
+            })
 
-                    $("input[name='anonimus']").on('click', function() {
-                        anonim = $(this).prop('checked') == true ? 1 : 0
-                    })
+            $('.nominallainnya input').on('change', function() {
+                l = $(this).val()
+                nominal = l
+                bb = l
+                var angka = l.replaceAll('.', '');
 
-                    validWithNominal()
-
-                    $("input[name='amount']").on('keyup', function() {
-
-                        nominal = $(this).val()
-                        let kosong = true;
-                        let k = nominal.replaceAll('.', '');
-
-                        bb = nominal
-                        l = nominal
-
-                        $('.required input').each(function() {
-                            if (k < 10000)
-                                kosong = false
-                        })
-
-                        if (kosong) {
-                            $('#submit').removeClass('opacity-30 cursor-not-allowed')
-                            $('#submit').prop('disabled', false)
-                            $('.donasi').addClass('mb-2')
-                            $('.alert').hide()
-                        } else {
-                            $('#submit').addClass('opacity-30 cursor-not-allowed')
-                            $('#submit').prop('disabled', true)
-                            $('.donasi').removeClass('mb-2')
-                            $('.alert').show()
-
-                        }
-                    })
-
+                if (angka < 10000 || l == '') {
+                    $('.alert').show()
+                } else {
+                    $('#submit').removeClass('cursor-not-allowed opacity-30');
+                    $('#submit').prop('disabled', false);
+                    $('.alert').hide()
 
                     $('#submit').on('click', function() {
 
-                        if (nominal != undefined) {
-                            $('.konfirm').find('.donasi input').val(bb)
-                            let angka = nominal.replaceAll('.', '');
+                        let user = $('#user').data('id')
 
-                            beforePayment(bb)
-                            payment(angka, anonim, program_id)
+                        if (user != undefined) {
+
+                            let kosong = true
+
+                            $('.required input').each(function() {
+                                if (angka < 10000 || $("input[name='user_nama_lengkap']")
+                                    .val() == '' ||
+                                    $(
+                                        "input[name='user_telp_kontak']").val() == '' || $(
+                                        "input[name='user_telp_kontak']").val()
+                                    .length < 8 || IsEmail($(
+                                            "input[name='user_mail_lengkap']")
+                                        .val()) == false)
+                                    kosong = false
+                            })
+
+                            if (kosong) {
+                                $('#submit').removeClass('opacity-30 cursor-not-allowed')
+                                $('#submit').prop('disabled', false)
+                            } else {
+                                $('#submit').addClass('opacity-30 cursor-not-allowed')
+                                $('#submit').prop('disabled', true)
+                            }
+
                         } else {
-
-                            let angka = l.replaceAll('.', '');
-                            // console.log(angka);
-
-                            $('.konfirm').find('.donasi input').val(l)
-
-                            beforePayment(l)
-                            payment(angka, anonim, program_id)
+                            $('#submit').addClass('cursor-not-allowed opacity-30');
+                            $('#submit').prop('disabled', true);
                         }
-                    })
-                });
+
+                        $('.nominal').addClass('hidden');
+                        $('.konfirm').removeClass('hidden');
+                        $('.konfirm').find('.donasi input').val(l)
+
+                        $("input[name='anonimus']").on('click', function() {
+                            anonim = $(this).prop('checked') == true ? 1 : 0
+                        })
+
+                        validWithNominal()
+
+                        $("input[name='amount']").on('keyup', function() {
+
+                            nominal = $(this).val()
+                            let kosong = true;
+                            let k = nominal.replaceAll('.', '');
+
+                            bb = nominal
+                            l = nominal
+
+                            $('.required input').each(function() {
+                                if (k < 10000)
+                                    kosong = false
+                            })
+
+                            if (kosong) {
+                                $('#submit').removeClass('opacity-30 cursor-not-allowed')
+                                $('#submit').prop('disabled', false)
+                                $('.donasi').addClass('mb-2')
+                                $('.alert').hide()
+                            } else {
+                                $('#submit').addClass('opacity-30 cursor-not-allowed')
+                                $('#submit').prop('disabled', true)
+                                $('.donasi').removeClass('mb-2')
+                                $('.alert').show()
+
+                            }
+                        })
+
+
+                        $('#submit').on('click', function() {
+
+                            if (nominal != undefined) {
+                                $('.konfirm').find('.donasi input').val(bb)
+                                let angka = nominal.replaceAll('.', '');
+
+                                beforePayment(bb)
+                                payment(angka, anonim, program_id)
+                            } else {
+
+                                let angka = l.replaceAll('.', '');
+                                // console.log(angka);
+
+                                $('.konfirm').find('.donasi input').val(l)
+
+                                beforePayment(l)
+                                payment(angka, anonim, program_id)
+                            }
+                        })
+                    });
+                }
+            })
+
+
+            //notif nominal donasi tidak boleh kosong
+
+            function disableBtn() {
+                $("input[name='amount']").prop('disabled', true);
+                $("#submit").prop('disabled', true);
+                $('.nominal').children('button').prop('disabled', true);
+
             }
-        })
 
-
-        //notif nominal donasi tidak boleh kosong
-
-        function disableBtn() {
-            $("input[name='amount']").prop('disabled', true);
-            $("#submit").prop('disabled', true);
-            $('.nominal').children('button').prop('disabled', true);
-
-        }
-
-        function enableBtn() {
-            $("input[name='amount']").prop('disabled', false);
-            $("#submit").prop('disabled', false);
-            $('.nominal').children('button').prop('disabled', false);
-        }
-
-        $('#submit').on('click', function() {
-            if (amount == "" || amount == null) {
-                $(this).attr("data-swal-toast-template", "#my-template")
-                Swal.mixin({
-                    toast: true,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    didOpen: () => {
-                        // Disable semua tombol dengan class tertentu
-                        disableBtn();
-                    },
-                    didClose: () => {
-                        // Aktifkan kembali tombol setelah swal ditutup
-                        enableBtn();
-                    }
-                }).bindClickHandler("data-swal-toast-template");
-
-            } else {
-                $(this).removeAttr("data-swal-toast-template")
+            function enableBtn() {
+                $("input[name='amount']").prop('disabled', false);
+                $("#submit").prop('disabled', false);
+                $('.nominal').children('button').prop('disabled', false);
             }
-        })
 
-        $("input[name='amount']").on('keyup', function() {
-            amount = $(this).val()
-        })
+            $('#submit').on('click', function() {
+                if (amount == "" || amount == null) {
+                    $(this).attr("data-swal-toast-template", "#my-template")
+                    Swal.mixin({
+                        toast: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        didOpen: () => {
+                            // Disable semua tombol dengan class tertentu
+                            disableBtn();
+                        },
+                        didClose: () => {
+                            // Aktifkan kembali tombol setelah swal ditutup
+                            enableBtn();
+                        }
+                    }).bindClickHandler("data-swal-toast-template");
+
+                } else {
+                    $(this).removeAttr("data-swal-toast-template")
+                }
+            })
+
+            $("input[name='amount']").on('keyup', function() {
+                amount = $(this).val()
+            })
 
 
 
 
-    });
-
-
-    function beforePayment(tes) {
-
-        $('.btn').text('Proses..')
-        $('.spin').removeClass('hidden')
-        $('#submit').attr('disabled')
-        $('#submit').addClass('opacity-50 cursor-not-allowed')
-        $('.konfirm').find('.donasi input').val(tes)
-    }
-
-
-    function payment(angka, anonim, program_id) {
-
-        let nama = $("input[name='user_nama_lengkap']").val()
-        let telp = $("input[name='user_telp_kontak']").val()
-        let email = $("input[name='user_mail_lengkap']").val()
-        let pesan = $("textarea[name='message']").val()
-
-        $.ajax({
-            type: "POST",
-            url: "{{route('transaksi')}}",
-            data: {
-                _token: '{{ csrf_token() }}',
-                program_id: program_id,
-                amount: angka,
-                nama: nama,
-                telp: telp,
-                email: email,
-                anonim: anonim,
-                pesan: pesan,
-            },
-            success: function(response) {
-
-                let slug = $('#slug').data('slug')
-                let url = '{{route("payment",[":id", ":slug" ])}}'
-                url = url.replace(':id', response.order_id)
-                url = url.replace(':slug', slug)
-                window.location.href = url
-            }
         });
-    }
 
-    function autoFillText() {
-        let nama = $("input[name='user_nama_lengkap']").val();
-        let telp = $("input[name='user_telp_kontak']").val();
-        if (nama !== "" && telp !== "") {
-            $('#submit').prop('disabled', false);
-            $('#submit').removeClass('opacity-30 cursor-not-allowed')
+
+        function beforePayment(tes) {
+
+            $('.btn').text('Proses..')
+            $('.spin').removeClass('hidden')
+            $('#submit').attr('disabled')
+            $('#submit').addClass('opacity-50 cursor-not-allowed')
+            $('.konfirm').find('.donasi input').val(tes)
         }
-    }
+
+
+        function payment(angka, anonim, program_id) {
+
+            let nama = $("input[name='user_nama_lengkap']").val()
+            let telp = $("input[name='user_telp_kontak']").val()
+            let email = $("input[name='user_mail_lengkap']").val()
+            let pesan = $("textarea[name='message']").val()
+
+            $.ajax({
+                type: "POST",
+                url: "{{route('transaksi')}}",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    program_id: program_id,
+                    amount: angka,
+                    nama: nama,
+                    telp: telp,
+                    email: email,
+                    anonim: anonim,
+                    pesan: pesan,
+                },
+                success: function(response) {
+
+                    let slug = $('#slug').data('slug')
+                    let url = '{{route("payment",[":id", ":slug" ])}}'
+                    url = url.replace(':id', response.order_id)
+                    url = url.replace(':slug', slug)
+                    window.location.href = url
+                }
+            });
+        }
+
+        function autoFillText() {
+            let nama = $("input[name='user_nama_lengkap']").val();
+            let telp = $("input[name='user_telp_kontak']").val();
+            if (nama !== "" && telp !== "") {
+                $('#submit').prop('disabled', false);
+                $('#submit').removeClass('opacity-30 cursor-not-allowed')
+            }
+        }
     </script>
 
     @endpush
