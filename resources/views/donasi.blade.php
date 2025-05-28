@@ -179,7 +179,7 @@
                     class="text-sm w-full border rounded border-gray-300 p-2 mb-2 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
                 <input type="tel" name="user_t" data-nofb="true" autocomplete="off" placeholder="Nomor Telfon *"
-                    class="text-sm w-full border rounded p-2 mb-2 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
+                    class="text-sm w-full border user_t rounded p-2 mb-2 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
                 <input type="text" name="user_e" data-nofb="true" autocomplete="off" placeholder="Alamat Email "
                     class="text-sm w-full border rounded p-2 mb-3 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
@@ -191,7 +191,7 @@
                     class="text-sm w-full border rounded border-gray-300 p-2 mb-2 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="{{ Auth::user()->name }}" hidden>
                 <input type="tel" name="user_t" placeholder="Nomor Telfon *"
-                    class="text-sm w-full border rounded p-2 mb-2 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
+                    class="text-sm w-full border user_t rounded p-2 mb-2 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="{{ Auth::user()->no_wa }}" hidden>
                 <input type="text" name="user_e" placeholder="Alamat Email "
                     class="text-sm w-full border rounded p-2 mb-3 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
@@ -266,7 +266,6 @@
             }
 
             function validWithNominal() {
-                autoFillText();
                 $('.required input').on('keyup', function() {
                     // let amount = $("input[name='amount']").val()
                     let k = nominal.replaceAll('.', '')
@@ -580,14 +579,10 @@
             });
         }
 
-        function autoFillText() {
-            let nama = $("input[name='user_nama_lengkap']").val();
-            let telp = $("input[name='user_t']").val();
-            if (nama !== "" && telp !== "") {
-                $('#submit').prop('disabled', false);
-                $('#submit').removeClass('opacity-30 cursor-not-allowed')
-            }
-        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementsByClassName('user_t').value = '';
+        });
     </script>
 
     @endpush
