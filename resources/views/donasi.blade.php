@@ -157,7 +157,7 @@
         </div>
     </div>
 
-    <form>
+    <form autocomplete="off">
         <div class="w-full bg-white min-h-screen p-4 konfirm hidden" data-id="{{$program->id}}">
             <p class="pt-3 text-gray-600 font-semibold mb-2">Nominal Lainnya</p>
             <div class="required">
