@@ -301,6 +301,7 @@
             });
 
             $('.nominal button').on('click', function() {
+                autoFillText();
                 let user = $('#user').data('id');
                 // console.log(user);
                 amount = "tidak null";
@@ -572,6 +573,15 @@
                     window.location.href = url
                 }
             });
+        }
+
+        function autoFillText() {
+            let nama = $("input[name='name']").val();
+            let telp = $("input[name='telp']").val();
+            if (nama !== "" && telp !== "") {
+                $('#submit').prop('disabled', false);
+                $('#submit').removeClass('opacity-30 cursor-not-allowed')
+            }
         }
     </script>
 
