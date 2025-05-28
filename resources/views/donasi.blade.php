@@ -174,25 +174,26 @@
                         class="text-blue underline inline-block w-auto p-0 m-0 focus:outline-none border focus:border-red-500 focus:ring-0">Login</a>
                     dahulu atau lengkapi data berikut
                 </div>
-                <input type="text" name="name" data-nofb="true" autocomplete="off" placeholder="Nama Lengkap *"
+                <input type="text" name="user_nama_lengkap" data-nofb="true" autocomplete="off"
+                    placeholder="Nama Lengkap *"
                     class="text-sm w-full border rounded border-gray-300 p-2 mb-2 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
-                <input type="text" name="telp" data-nofb="true" autocomplete="off" placeholder="Nomor Telfon *"
+                <input type="text" name="user_telp" data-nofb="true" autocomplete="off" placeholder="Nomor Telfon *"
                     class="text-sm w-full border rounded p-2 mb-2 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
-                <input type="email" name="email" data-nofb="true" autocomplete="off" placeholder="Alamat Email "
+                <input type="email" name="user_email" data-nofb="true" autocomplete="off" placeholder="Alamat Email "
                     class="text-sm w-full border rounded p-2 mb-3 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
                 @endguest
                 @auth
                 <div id="user" data-id="{{Auth::user()}}"></div>
-                <input type="text" name="name" placeholder="Nama Lengkap *"
+                <input type="text" name="user_nama_lengkap" placeholder="Nama Lengkap *"
                     class="text-sm w-full border rounded border-gray-300 p-2 mb-2 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="{{ Auth::user()->name }}" hidden>
-                <input type="text" name="telp" placeholder="Nomor Telfon *"
+                <input type="text" name="user_telp" placeholder="Nomor Telfon *"
                     class="text-sm w-full border rounded p-2 mb-2 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="{{ Auth::user()->no_wa }}" hidden>
-                <input type="email" name="email" placeholder="Alamat Email "
+                <input type="email" name="user_email" placeholder="Alamat Email "
                     class="text-sm w-full border rounded p-2 mb-3 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="{{ Auth::user()->email }}" hidden>
                 <div class="my-3">
@@ -275,9 +276,10 @@
 
 
                     $('.required input').each(function() {
-                        if (k < 10000 || $("input[name='name']").val() == '' || $(
-                                "input[name='telp']").val() == '' || $("input[name='telp']").val()
-                            .length < 8 || IsEmail($("input[name='email']").val()) == false)
+                        if (k < 10000 || $("input[name='user_nama_lengkap']").val() == '' || $(
+                                "input[name='user_telp']").val() == '' || $(
+                                "input[name='user_telp']").val()
+                            .length < 8 || IsEmail($("input[name='user_email']").val()) == false)
                             kosong = false
                     })
 
@@ -293,7 +295,7 @@
                 })
             }
 
-            $("input[name='telp']").on('keyup', function() {
+            $("input[name='user_telp']").on('keyup', function() {
                 this.value = this.value.replace(/[^0-9\.]/g, "")
             })
 
@@ -402,11 +404,12 @@
                             let kosong = true
 
                             $('.required input').each(function() {
-                                if (angka < 10000 || $("input[name='name']").val() == '' ||
+                                if (angka < 10000 || $("input[name='user_nama_lengkap']")
+                                    .val() == '' ||
                                     $(
-                                        "input[name='telp']").val() == '' || $(
-                                        "input[name='telp']").val()
-                                    .length < 8 || IsEmail($("input[name='email']")
+                                        "input[name='user_telp']").val() == '' || $(
+                                        "input[name='user_telp']").val()
+                                    .length < 8 || IsEmail($("input[name='user_email']")
                                         .val()) == false)
                                     kosong = false
                             })
@@ -546,9 +549,9 @@
 
         function payment(angka, anonim, program_id) {
 
-            let nama = $("input[name='name']").val()
-            let telp = $("input[name='telp']").val()
-            let email = $("input[name='email']").val()
+            let nama = $("input[name='user_nama_lengkap']").val()
+            let telp = $("input[name='user_telp']").val()
+            let email = $("input[name='user_email']").val()
             let pesan = $("textarea[name='message']").val()
 
             $.ajax({
@@ -576,8 +579,8 @@
         }
 
         function autoFillText() {
-            let nama = $("input[name='name']").val();
-            let telp = $("input[name='telp']").val();
+            let nama = $("input[name='user_nama_lengkap']").val();
+            let telp = $("input[name='user_telp']").val();
             if (nama !== "" && telp !== "") {
                 $('#submit').prop('disabled', false);
                 $('#submit').removeClass('opacity-30 cursor-not-allowed')
