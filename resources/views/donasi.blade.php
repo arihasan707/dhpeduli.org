@@ -265,6 +265,7 @@
             }
 
             function validWithNominal() {
+                autoFillText();
                 $('.required input').on('keyup', function() {
                     // let amount = $("input[name='amount']").val()
                     let k = nominal.replaceAll('.', '')
@@ -301,7 +302,6 @@
             });
 
             $('.nominal button').on('click', function() {
-                autoFillText();
                 let user = $('#user').data('id');
                 // console.log(user);
                 amount = "tidak null";
