@@ -189,8 +189,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">Url</th>
-                                <th scope="col">Target</th>
-                                <th scope="col">Priode</th>
+                                <th scope="col">Source</th>
+                                <th scope="col">Campaign</th>
                                 <th scope="col">Total Kunjungan</th>
                             </tr>
                         </thead>
