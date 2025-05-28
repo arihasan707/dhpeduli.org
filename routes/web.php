@@ -18,11 +18,8 @@ Route::get('/akun', [AkunController::class, 'index'])->name('akun.index');
 //     return view('akun');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-//visitor ads
-Route::middleware('visitor')->get('detail/{program:slug}?utm_source&utm_campaign', [HomeController::class, 'show']);
-
 // route detail
-Route::get('detail/{program:slug}', [HomeController::class, 'show'])->name('detail');
+Route::middleware('visitor')->get('detail/{program:slug}', [HomeController::class, 'show'])->name('detail');
 
 // route donatur detail
 Route::get('detail/{program:slug}/donatur', [HomeController::class, 'show'])->name('donatur');
