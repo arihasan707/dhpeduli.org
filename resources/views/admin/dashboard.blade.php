@@ -189,6 +189,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Url</th>
+                                <th scope="col">Target</th>
                                 <th scope="col">Priode</th>
                                 <th scope="col">Total Kunjungan</th>
                             </tr>
@@ -197,8 +198,9 @@
                             @foreach ($visitors as $row)
                             <tr>
                                 <td>{{ $row->url }}</td>
+                                <td>{{ $row->utm_source }}</td>
                                 <td>{{ $row->utm_campaign }}</td>
-                                <td>{{ $row->total }} Orang</td>
+                                <td>{{ $row->total }} orang</td>
                             </tr>
                             @endforeach
                         </tbody>
