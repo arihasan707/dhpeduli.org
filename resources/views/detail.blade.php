@@ -295,7 +295,7 @@
         </div>
     </div>
 
-    @if ($berita === false)
+    <!-- @if ($berita === false)
     <div class="p-4 border-t-8 border-gray-100 relative" id="news">
         <div class="flex items-center justify-between mb-8">
             <h3 class="font-bold text-sm flex-1">Berita Terbaru</h3>
@@ -344,7 +344,7 @@
             </div>
         </div>
     </div>
-    @endif
+    @endif -->
 
 
     <div class="p-4 border-t-8 border-gray-100 relative">

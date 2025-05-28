@@ -16,7 +16,7 @@ class LogVisitor
      */
     public function handle(Request $request, Closure $next): Response
     {
-
+        # code...
         Visitor::create([
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
