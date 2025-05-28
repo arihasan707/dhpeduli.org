@@ -174,13 +174,13 @@
                         class="text-blue underline inline-block w-auto p-0 m-0 focus:outline-none border focus:border-red-500 focus:ring-0">Login</a>
                     dahulu atau lengkapi data berikut
                 </div>
-                <input type="text" name="name" placeholder="Nama Lengkap *"
+                <input type="text" name="name" data-nofb="true" autocomplete="off" placeholder="Nama Lengkap *"
                     class="text-sm w-full border rounded border-gray-300 p-2 mb-2 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
-                <input type="text" name="telp" placeholder="Nomor Telfon *"
+                <input type="text" name="telp" data-nofb="true" autocomplete="off" placeholder="Nomor Telfon *"
                     class="text-sm w-full border rounded p-2 mb-2 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
-                <input type="email" name="email" placeholder="Alamat Email "
+                <input type="email" name="email" data-nofb="true" autocomplete="off" placeholder="Alamat Email "
                     class="text-sm w-full border rounded p-2 mb-3 border-gray-300 focus:outline-none focus:border-red-500 focus:ring-0"
                     value="">
                 @endguest
