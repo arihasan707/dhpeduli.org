@@ -568,9 +568,8 @@
                     pesan: pesan,
                 },
                 success: function(response) {
-
                     let slug = $('#slug').data('slug')
-                    let url = '{{route("payment",[":id", ":slug" ])}}'
+                    let url = '{{route("payment",[":id", ":slug"])}}'
                     url = url.replace(':id', response.order_id)
                     url = url.replace(':slug', slug)
                     window.location.href = url

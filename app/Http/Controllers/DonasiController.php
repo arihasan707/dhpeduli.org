@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LeadCreated;
 use App\Models\Donasi;
 use App\Models\Program;
 use Illuminate\Support\Str;
@@ -64,6 +65,19 @@ class DonasiController extends Controller
         $donasi->amount = $request->amount;
         $donasi->snap = $snapToken;
         $donasi->save();
+
+        // Buat event_id (deduplication)
+        $eventId = (string) Str::uuid();
+
+        #triger event meta ads
+        $lead = [
+            'name' => $request->nama,
+            'telp' => $request->telp
+        ];
+
+        event(new LeadCreated($lead, $eventId));
+
+        $request->session()->put('event_id', $eventId);
 
         return response()->json([
             'massage' => 'Transaksi berhasil dibuat',
