@@ -34,8 +34,8 @@ class SendLeadToMeta
                     'event_source_url' => url()->current(),
                     'event_id' => $eventId,
                     'user_data' => [
-                        'fn' => [hash('sha256', strtolower($lead->nama))],
-                        'ph' => [hash('sha256', strtolower($lead->telp))],
+                        'fn' => [hash('sha256', strtolower($lead['nama']))],
+                        'ph' => [hash('sha256', strtolower($lead['telp']))],
                         'client_ip_address' => request()->ip(),
                         'client_user_agent' => request()->userAgent(),
                     ]

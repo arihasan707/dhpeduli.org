@@ -71,7 +71,7 @@ class DonasiController extends Controller
 
         #triger event meta ads
         $lead = [
-            'name' => $request->nama,
+            'nama' => $request->nama,
             'telp' => $request->telp
         ];
 
