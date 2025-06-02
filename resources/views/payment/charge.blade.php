@@ -3,12 +3,6 @@
     @push('styles')
     <script type="text/javascript" src="https://app.midtrans.com/snap/snap.js"
         data-client-key="<?= config('midtrans.clientKey') ?>"></script>
-
-    <script>
-        fbq('track', 'Lead', {}, {
-            eventID: "{{session('event_id')}}"
-        });
-    </script>
     @endpush
 
 
