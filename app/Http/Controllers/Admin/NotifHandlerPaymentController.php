@@ -52,16 +52,6 @@ class NotifHandlerPaymentController extends Controller
 
         if ($transaction_status == 'settlement') {
 
-            // Buat event_id (deduplication)
-            $eventId = (string) Str::uuid();
-            #triger event meta ads
-            $purchase = [
-                'nama' => $order->nama,
-                'telp' => $order->telp
-            ];
-            event(new LeadCreated($purchase, $eventId));
-            $request->session()->put('event_id', $eventId);
-
             $order->status = 'settlement';
             $order->save();
             $program->terkumpul = $program->terkumpul + $order->amount;
