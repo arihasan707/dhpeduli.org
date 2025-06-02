@@ -1,7 +1,7 @@
 <x-app-layout>
 
     @push('styles')
-
+    <x-pixel track="PageView" />
     <style>
         .checkbox {
             -webkit-appearance: none;

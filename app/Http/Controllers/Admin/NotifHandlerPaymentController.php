@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Donasi;
 use App\Models\Program;
+use App\Events\LeadCreated;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -49,6 +51,17 @@ class NotifHandlerPaymentController extends Controller
         $transaction_status = $payload['transaction_status'];
 
         if ($transaction_status == 'settlement') {
+
+            // Buat event_id (deduplication)
+            $eventId = (string) Str::uuid();
+            #triger event meta ads
+            $purchase = [
+                'nama' => $order->nama,
+                'telp' => $order->telp
+            ];
+            event(new LeadCreated($purchase, $eventId));
+            $request->session()->put('event_id', $eventId);
+
             $order->status = 'settlement';
             $order->save();
             $program->terkumpul = $program->terkumpul + $order->amount;

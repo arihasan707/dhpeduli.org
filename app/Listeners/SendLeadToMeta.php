@@ -22,20 +22,20 @@ class SendLeadToMeta
      */
     public function handle(LeadCreated $event): void
     {
-        $lead = $event->lead;
+        $purchase = $event->purchase;
         $eventId = $event->eventId;
 
         $payload = [
             'data' => [
                 [
-                    'event_name' => 'Lead',
+                    'event_name' => 'Purchase',
                     'event_time' => time(),
                     'action_source' => 'website',
                     'event_source_url' => url()->current(),
                     'event_id' => $eventId,
                     'user_data' => [
-                        'fn' => [hash('sha256', strtolower($lead['nama']))],
-                        'ph' => [hash('sha256', strtolower($lead['telp']))],
+                        'fn' => [hash('sha256', strtolower($purchase['nama']))],
+                        'ph' => [hash('sha256', strtolower($purchase['telp']))],
                         'client_ip_address' => request()->ip(),
                         'client_user_agent' => request()->userAgent(),
                     ]

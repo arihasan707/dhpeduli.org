@@ -1,6 +1,6 @@
 <x-detail-program>
-
     @push('styles')
+    <x-pixel track="PageView" />
     <style>
         .content-clipper {
             max-height: 300px;

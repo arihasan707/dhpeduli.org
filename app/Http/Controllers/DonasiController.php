@@ -66,19 +66,6 @@ class DonasiController extends Controller
         $donasi->snap = $snapToken;
         $donasi->save();
 
-        // Buat event_id (deduplication)
-        $eventId = (string) Str::uuid();
-
-        #triger event meta ads
-        $lead = [
-            'nama' => $request->nama,
-            'telp' => $request->telp
-        ];
-
-        event(new LeadCreated($lead, $eventId));
-
-        $request->session()->put('event_id', $eventId);
-
         return response()->json([
             'massage' => 'Transaksi berhasil dibuat',
             'order_id' => $inv,

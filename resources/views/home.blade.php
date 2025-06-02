@@ -4,25 +4,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-    /* CSS Code */
-    .swiper-wrapper {
-        width: 100%;
-        height: max-content !important;
-        -webkit-transition-timing-function: linear !important;
-        transition-timing-function: linear !important;
-        position: relative;
-    }
+        /* CSS Code */
+        .swiper-wrapper {
+            width: 100%;
+            height: max-content !important;
+            -webkit-transition-timing-function: linear !important;
+            transition-timing-function: linear !important;
+            position: relative;
+        }
 
-    .swiper-pagination-bullet {
-        background: #4f46e5;
-    }
+        .swiper-pagination-bullet {
+            background: #4f46e5;
+        }
 
-    .swiper-horizontal>.swiper-pagination-bullets,
-    .swiper-pagination-bullets.swiper-pagination-horizontal,
-    .swiper-pagination-custom,
-    .swiper-pagination-fraction {
-        bottom: -25px;
-    }
+        .swiper-horizontal>.swiper-pagination-bullets,
+        .swiper-pagination-bullets.swiper-pagination-horizontal,
+        .swiper-pagination-custom,
+        .swiper-pagination-fraction {
+            bottom: -25px;
+        }
     </style>
     @endpush
 
@@ -119,32 +119,32 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-    var swiper = new Swiper(".mySwiper", {
-        cssMode: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-        },
-        mousewheel: true,
-        keyboard: true,
-    });
+        var swiper = new Swiper(".mySwiper", {
+            cssMode: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            mousewheel: true,
+            keyboard: true,
+        });
     </script>
 
     <script>
-    var swiper = new Swiper(".default-carousel", {
-        loop: true,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        autoplay: {
-            delay: 2100,
-            disableOnInteraction: false,
-        },
-    });
+        var swiper = new Swiper(".default-carousel", {
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            autoplay: {
+                delay: 2100,
+                disableOnInteraction: false,
+            },
+        });
     </script>
 
     @endpush
