@@ -8,7 +8,7 @@ use App\Events\LeadCreated;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Session;
 
 class NotifHandlerPaymentController extends Controller
 {
@@ -51,6 +51,19 @@ class NotifHandlerPaymentController extends Controller
         $transaction_status = $payload['transaction_status'];
 
         if ($transaction_status == 'settlement') {
+
+            try {
+                #triger event meta ads
+                $purchase = [
+                    'nama' => $order->nama,
+                    'telp' => $order->telp,
+                    'amount' => $order->amount
+                ];
+                event(new LeadCreated($purchase));
+                //code...
+            } catch (\Throwable $th) {
+                Log::error($th);
+            }
 
             $order->status = 'settlement';
             $order->save();

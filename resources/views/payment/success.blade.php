@@ -1,10 +1,4 @@
 <x-app-layout>
-
-    @push('styles')
-    <x-pixel track="Purchase" />
-    <x-pixel track="PageView" />
-    @endpush
-
     <x-slot name="header">
         <div class="max-w-[430px] bg-blue z-10 w-[100%] flex justify-between sticky top-0">
             <div class="p-4 text-white">

@@ -19,11 +19,6 @@
     }(window, document, 'script',
         'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '960391952837738');
-    if ('{{$track}}' === 'Purchase') {
-        fbq("track", "{{$track}}", {}, {
-            eventId: "{{ session('event_id') }}"
-        });
-    }
     fbq('track', '{{$track}}');
 </script>
 <noscript><img height="1" width="1" style="display:none"

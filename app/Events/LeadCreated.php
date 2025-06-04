@@ -15,14 +15,12 @@ class LeadCreated
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $purchase;
-    public $eventId;
     /**
      * Create a new event instance.
      */
-    public function __construct($purchase, string $eventId)
+    public function __construct($purchase)
     {
         $this->purchase = $purchase;
-        $this->eventId = $eventId;
     }
 
     /**
