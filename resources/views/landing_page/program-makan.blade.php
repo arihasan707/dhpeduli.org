@@ -1,4 +1,7 @@
 <x-layouts.landing-page>
+
+    <x-pixel track="PageView" />
+
     <section class="hero-section">
         <div class="container align-items-end">
             <div class="row">
