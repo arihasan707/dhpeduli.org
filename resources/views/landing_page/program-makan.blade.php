@@ -204,7 +204,7 @@
                                     style="font-size: 20px;text-shadow: 2px 4px 7px white;">
                                     Donasi Sekarang</a>
                                 @else
-                                <a href="https://dhpeduli.org/detail/infaq-beras-untuk-200-santri-penghafal-al-quran"
+                                <a href="https://dhpeduli.org/donasi/infaq-beras-untuk-200-santri-penghafal-al-quran"
                                     class="btn btn-red mt-3 w-75"
                                     style="font-size: 20px;text-shadow: 2px 4px 7px white;">
                                     Donasi Sekarang</a>
