@@ -1,6 +1,30 @@
 {
+  "public/fonts/Bold/OpenSans-Bold.woff": {
+    "file": "assets/OpenSans-Bold-y7MB7E_R.woff",
+    "src": "public/fonts/Bold/OpenSans-Bold.woff"
+  },
+  "public/fonts/Bold/OpenSans-Bold.woff2": {
+    "file": "assets/OpenSans-Bold-CZmsLVLJ.woff2",
+    "src": "public/fonts/Bold/OpenSans-Bold.woff2"
+  },
+  "public/fonts/Regular/OpenSans-Regular.woff": {
+    "file": "assets/OpenSans-Regular-9sMoswZ-.woff",
+    "src": "public/fonts/Regular/OpenSans-Regular.woff"
+  },
+  "public/fonts/Regular/OpenSans-Regular.woff2": {
+    "file": "assets/OpenSans-Regular-ViNznsac.woff2",
+    "src": "public/fonts/Regular/OpenSans-Regular.woff2"
+  },
+  "public/fonts/Semibold/OpenSans-Semibold.woff": {
+    "file": "assets/OpenSans-Semibold-D1rVhN68.woff",
+    "src": "public/fonts/Semibold/OpenSans-Semibold.woff"
+  },
+  "public/fonts/Semibold/OpenSans-Semibold.woff2": {
+    "file": "assets/OpenSans-Semibold-DSZ9GxFk.woff2",
+    "src": "public/fonts/Semibold/OpenSans-Semibold.woff2"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-DL37i4c_.css",
+    "file": "assets/app-DHcN8drP.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
