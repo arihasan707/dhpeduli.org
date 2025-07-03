@@ -201,8 +201,8 @@
                             <div class="newsletter-text text-center donasi">
                                 <h2 class="text-white">Mari salurkan sedekah makanan terbaik </h2>
 
-                                @if (request()->query('pay') === 'order')
-                                <a href="https://adnanhasyim.orderonline.id/beasiswa-santri-penghafal-al-quran"
+                                @if (request()->query('purchase') === 'order-online')
+                                <a href="https://9test.orderonline.id/beasiswa-santri-penghafal-al-quran"
                                     class="btn btn-red mt-3 w-75"
                                     style="font-size: 20px;text-shadow: 2px 4px 7px white;">
                                     Donasi Sekarang</a>
