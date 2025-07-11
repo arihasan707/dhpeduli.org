@@ -7,10 +7,9 @@
             <div class="row">
                 <div class="col">
                     <div class="hero-text text-center">
-                        <h2>Meraih <br> "Pahala Al-Qur'an"</h2>
-                        <p class="fw-bold">
-                            Dengan Memberi Makanan <br />
-                            <span style="font-style: italic" ;>(Kepada Para Penghafal Al-Qur’an)</span>
+                        <h2>Satu Sedekah untuk Santri, Sejuta Kebaikan Menanti</h2>
+                        <p class="fw-bold mt-1" style="font-style: italic;">
+                            Karena mereka hafal, engkau pun mendapat ganjaran kekal <br />
                         </p>
                     </div>
                 </div>
@@ -171,47 +170,19 @@
         </div>
     </section>
 
-    <section>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="text-center p-4 hero-section-overlay-yellow">
-                    <div style="position: relative; z-index:2">
-                        <strong style=" font-weight: normal; margin-bottom:13px; font-style:italic;">
-                            Ayah/bunda, dengan membantu memenuhi Kebutuhan Makanan Para Santri
-                        </strong> <br><br>
-                        <strong style="font-size: 1.1em; color:#036903; font-style:italic;">
-                            "Insya Allah, Pahalanya akan senantiasa mengalir kepada kita, yang membantu mereka dalam
-                            Menghafalkan Al-Qur'an"
-                        </strong><br> <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="hero-section1">
+    <section class="hero-section1" style="height:300px;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-md-3">
-
-                        </div>
                         <div class="col-12">
                             <div class="newsletter-text text-center donasi">
-                                <h2 class="text-white">Mari salurkan sedekah makanan terbaik </h2>
+                                <h2 class="text-white">Mari salurkan sedekah <br> makanan terbaik anda</h2>
 
-                                @if (request()->query('pay') === 'order')
-                                <a href="https://adnanhasyim.orderonline.id/beasiswa-santri-penghafal-al-quran"
-                                    class="btn btn-red mt-3 w-75"
-                                    style="font-size: 20px;text-shadow: 2px 4px 7px white;">
-                                    Donasi Sekarang</a>
-                                @else
                                 <a href="https://dhpeduli.org/donasi/infaq-beras-untuk-200-santri-penghafal-al-quran"
-                                    class="btn btn-red mt-3 w-75"
-                                    style="font-size: 20px;text-shadow: 2px 4px 7px white;">
+                                    class="btn btn-red mt-3 cta"
+                                    style="font-size: 28px;text-shadow: 2px 4px 7px black;">
                                     Donasi Sekarang</a>
-                                @endif
 
                                 <h5 class="text-white  mb-5 mt-2 fw-bold">
                                     <br>
@@ -226,6 +197,32 @@
                                 mengalir tanpa kesudahan "
                             </span>
                         </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-12">
+                        </div>
+                        <div class="col-12 text-center">
+                            <h2 style="font-size: large; font-weight:900">Legalitas Yayasan</h2>
+                            <p>Akta
+                                Nama: Yayasan Daarul Huffadz Indonesia
+                                Nomor: 3
+                                Tanggal: 25 April 2022
+                                Nama Notaris: Rosliah, S.H.
+                                Pengesahan Menteri Kehakiman & HAM:
+                                NO. AHU-0016303.A.H.01.04. TAHUN 2017
+                                Alamat:
+                                Jl. Batu Hulung No.54, RT.02/RW.01, Margajaya, Kec. Bogor Barat., Kota Bogor, Jawa Barat
+                                16116</p>
+                        </div>
                     </div>
                 </div>
             </div>

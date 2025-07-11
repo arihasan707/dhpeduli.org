@@ -41,7 +41,7 @@ Route::get('payment', [DonasiController::class, 'expire_midtrans'])->name('expir
 //route program berdasarkan kategori 
 Route::get('program', [ProgramController::class, 'index'])->name('program');
 
-Route::get('landing-page/program-makan', function () {
+Route::get('lp/program-makan', function () {
     return view('landing_page.program-makan');
 });
 //route tentang
