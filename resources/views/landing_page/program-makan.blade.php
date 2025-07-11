@@ -178,16 +178,6 @@
                         <div class="col-12">
                             <div class="newsletter-text text-center donasi">
                                 <h2 class="text-white">Mari salurkan sedekah <br> makanan terbaik anda</h2>
-
-<<<<<<< HEAD
-=======
-                                @if (request()->query('purchase') === 'order-online')
-                                <a href="https://9test.orderonline.id/beasiswa-santri-penghafal-al-quran"
-                                    class="btn btn-red mt-3 w-75"
-                                    style="font-size: 20px;text-shadow: 2px 4px 7px white;">
-                                    Donasi Sekarang</a>
-                                @else
->>>>>>> 80693e74664ba663db1653e3cc5e1fb9c86a4b5d
                                 <a href="https://dhpeduli.org/donasi/infaq-beras-untuk-200-santri-penghafal-al-quran"
                                     class="btn btn-red mt-3 cta"
                                     style="font-size: 28px;text-shadow: 2px 4px 7px black;">
