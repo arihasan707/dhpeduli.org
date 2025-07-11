@@ -8,8 +8,32 @@
     }
 }
 
+ @font-face {
+    font-family: OpenSans;
+    src : url('font/Regular/OpenSans-Regular.woff'),
+          url('font/Regular/OpenSans-Regular.woff2');
+    font-weight:400;
+    font-style:normal;
+}
+
+ @font-face {
+    font-family: OpenSans;
+    src : url('font/Bold/OpenSans-Bold.woff'),
+          url('font/Bold/OpenSans-Bold.woff2');
+    font-weight:700;
+    font-style:normal;
+}
+
+ @font-face {
+    font-family: OpenSans;
+    src : url('font/Semibold/OpenSans-Semibold.woff'),
+          url('font/Semibold/OpenSans-Semibold.woff2');
+    font-weight:600;
+    font-style:normal;
+}
+
 @layer base {
     html {
-        font-family: "Open Sans";
+        font-family: "OpenSans";
     }
 }
