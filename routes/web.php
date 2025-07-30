@@ -19,7 +19,7 @@ Route::get('/akun', [AkunController::class, 'index'])->name('akun.index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 // route detail
-Route::middleware('visitor')->get('detail/{program:slug}', [HomeController::class, 'show'])->name('detail');
+Route::get('detail/{program:slug}', [HomeController::class, 'show'])->name('detail');
 
 // route donatur detail
 Route::get('detail/{program:slug}/donatur', [HomeController::class, 'show'])->name('donatur');

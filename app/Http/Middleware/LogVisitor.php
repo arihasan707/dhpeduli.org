@@ -16,16 +16,6 @@ class LogVisitor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        # code...
-        Visitor::create([
-            'ip_address' => $request->ip(),
-            'user_agent' => $request->userAgent(),
-            'utm_source' => $request->query('utm_source'),
-            'utm_campaign' => $request->query('utm_campaign'),
-            'url' => $request->Url(),
-            'visited_at' => now(),
-        ]);
-
         return $next($request);
     }
 }
