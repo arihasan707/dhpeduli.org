@@ -361,6 +361,8 @@
 
                 $('#submit').on('click', function() {
 
+                    fbq()
+
                     // console.log(nominal);
                     // console.log(tes);
 
